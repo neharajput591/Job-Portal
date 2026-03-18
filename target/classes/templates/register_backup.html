@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #6366f1;
+            --secondary: #ec4899;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(120deg, #084981, #2fa39a);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            padding-bottom: 10px;
+
+        }
+
+        .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .create-account-btn {
+            background: #4ade80;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+
+        .register {
+            width: 380px;
+            padding: 40px;
+            margin-bottom: 50px;
+            
+            /* background: rgba(175, 26, 26, 0.15); */
+            background-color: #5d7897;
+            backdrop-filter: blur(12px);
+            border-radius: 15px;
+            color: white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .register-title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .register-subtitle {
+            text-align: center;
+            margin-top: 8px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            color: #e4e4e4;
+        }
+
+        /* Form Labels */
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        /* Input Fields */
+        input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            margin-bottom: 18px;
+            outline: none;
+        }
+
+  
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .radio-row {
+            display: flex;
+            gap: 20px;
+            /* width: 100px; */
+        }
+
+        .radio-option {
+            display: flex;
+            /* align-items:center; */
+            align-items: baseline;
+            gap: 6px;
+            font-size: 14px;
+
+            border-width: 2cap;
+            border-color: rgba(255, 255, 255, 0.518);
+            border-radius: 5px;
+            padding: 5px 12px;
+            /* max-width: 100%; */
+            background-color: rgba(255, 255, 255, 0.283);
+        }
+
+        input[type="radio"] {
+            accent-color: #1aa7a1;
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Login Button */
+        button {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(90deg, #38ef7d, #11998e);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Admin Id = admin@gmail.com -->
+ <!-- password = admin@123 -->
+
+    <!-- Header -->
+    <div class="header">
+
+        <div class="logo">💼 JobHub</div>
+
+        <a th:href="@{/login}">
+            <button class="create-account-btn">Sign In</button>
+        </a>
+
+    </div>
+
+    <div class="container">
+        <div class="register">
+            <!-- <h1 class="register-heading">Register yourself first</h1> -->
+            <h2 class="register-title">Create Account</h2>
+            <p class="register-subtitle">Join JobHub and find your dream career</p>
+
+            <form th:action="@{/RegisterData}" th:object="${userdata}" method="post" class="register-form">
+
+                <div th:if="${errorMessage}">
+                    <p style="color: #ecc94b; background-color: rgba(236, 72, 153, 0.2); padding: 5px; border-radius: 5px;"
+                        th:text="${errorMessage}"></p>
+                </div>
+
+                <label for=""> Email:</label>
+                <input type="email" name="email" class="input" unique required><br>
+
+                <label for="">password:</label>
+                <input type="password" name="password" class="input" required><br>
+
+                <label for="">role:</label>
+                <!-- <div class="input-radio">
+            <input type="radio" name="role" value="Candidate" class="radio">Candidate <br>
+            <input type="radio" name="role" value="Recruiter" class="radio">Recruiter <br>
+            <input type="radio" name="role" value="Admin" class="radio">Admin <br>
+
+            </div> -->
+
+                <div class="radio-group">
+
+                    <div class="radio-row">
+                        <label class="radio-option">
+                            <input type="radio" name="role" value="Candidate"> Candidate
+                        </label>
+
+                        <label class="radio-option">
+                            <input type="radio" name="role" value="Recruiter"> Recruiter
+                        </label>
+                        <!-- <label class="radio-option">
+                            <input type="radio" name="role" value="Admin"> Admin
+                        </label> -->
+                    </div>
+
+                    <!-- <div class="radio-row">
+                        <label class="radio-option">
+                            <input type="radio" name="role" value="Admin"> Admin
+                        </label>
+                    </div> -->
+
+                </div>
+                <button type="submit" class="button">Register</button>
+
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

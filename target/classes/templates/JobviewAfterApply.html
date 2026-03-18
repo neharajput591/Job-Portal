@@ -1,0 +1,245 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Description</title>
+</head>
+
+<body>
+    <div class="main" th:each="job:${jobDesc}">
+
+        <h2>Welcome Candidate </h2>
+        <h4>We are very happy to see you their ...</h4>
+
+
+        <div class="detail">
+            <h1 th:text="${job.title}"></h1>
+
+            <h2 th:text="${job.companyName}"></h2>
+            <h2 th:text="${job.location}"></h2>
+            <h2 th:text="${job.category}"></h2>
+            <h2 th:text="${job.skillsRequired}"></h2>
+            <h2 th:text="${job.experience_required}"></h2>
+            <h2 th:text="${job.qualification}"></h2>
+            <h2 th:text="${job.job_description}"></h2>
+            <h2 th:text="${job.salary}"></h2>
+            <h2 th:text="${job.contact}"></h2>
+            <h2 th:text="${job.postedDate}"></h2>
+
+            
+
+        </div>
+
+    </div>
+</body>
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Description</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Segoe UI, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+        }
+
+        /* HEADER */
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: linear-gradient(135deg, #1f4e79, #4db6ac);
+            color: white;
+        }
+
+        .header h1 {
+            font-weight: 600;
+        }
+
+        /* MAIN CONTAINER */
+
+        .main {
+            padding: 40px 60px;
+        }
+
+        /* JOB CARD */
+
+        .detail {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: auto;
+            position: relative;
+        }
+
+        /* JOB TITLE */
+
+        .jobTitle {
+            font-size: 30px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        /* COMPANY */
+
+        .company {
+            font-size: 20px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        /* BADGE */
+
+        .badge {
+            display: inline-block;
+            background: #e8f8f5;
+            color: #16a085;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
+        /* SECTION TITLE */
+
+        .section {
+            margin-top: 25px;
+        }
+
+        .section h3 {
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        /* TEXT */
+
+        .text {
+            color: #666;
+            line-height: 24px;
+        }
+
+        /* APPLY BUTTON */
+
+        .applyBtn {
+            margin-top: 30px;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(90deg, #2ecc71, #27ae60);
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .applyBtn:hover {
+            opacity: 0.9;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>JobHub</h1>
+    </div>
+
+    <div class="main" th:each="job:${jobDesc}">
+
+        <h2 style="margin-bottom:10px;">Welcome Candidate</h2>
+        <h4 style="margin-bottom:30px; color:#666;">We are very happy to see you here...</h4>
+
+        <div class="detail">
+
+            <h1 th:text="${job.title}" class="jobTitle"></h1>
+
+            <span th:if="${currentStatus == 'Accepted'}">
+                <span class="badge">Short Listed </span>
+                <p>Congratulations! 🎉 You have been shortlisted for the next stage of the recruitment process. Further details and instructions will be communicated to you via email. Please check your inbox regularly for updates.</p>
+            </span>
+
+            <span th:if="${currentStatus == 'Rejected'}">
+                <span class="badge">Rejected</span>
+                <p>Thank you for your application. Unfortunately, you were not selected for this position. We wish you the best for your future opportunities.</p>
+            </span>
+
+            <span th:if="${currentStatus == 'Pending'}">
+                <span class="badge">Pending</span>
+                <p>Your application has been successfully submitted and is currently under review. Further updates will be shared soon.</p>
+            </span>
+
+            <br><div class="company" th:text="${job.companyName}"></div>
+
+            <span class="badge" th:text="${job.location}"></span>
+            <span class="badge" th:text="${job.category}"></span>
+            <span class="badge" th:text="${job.salary}"></span>
+
+            <div class="section">
+                <h3>Skills Required</h3>
+                <p class="text" th:text="${job.skillsRequired}"></p>
+            </div>
+
+            <div class="section">
+                <h3>Experience Required</h3>
+                <p class="text" th:text="${job.experience_required}"></p>
+            </div>
+
+            <div class="section">
+                <h3>Qualification</h3>
+                <p class="text" th:text="${job.qualification}"></p>
+            </div>
+
+            <div class="section">
+                <h3>Job Description</h3>
+                <p class="text" th:text="${job.job_description}"></p>
+            </div>
+
+            <div class="section">
+                <h3>Contact</h3>
+                <p class="text" th:text="${job.contact}"></p>
+            </div>
+
+            <div class="section">
+                <h3>Posted Date</h3>
+                <p class="text" th:text="${job.postedDate}"></p>
+            </div>
+
+            <div class="section">
+                <h3>Applied Date</h3>
+                <p class="text" th:text="${appliedDate}"></p>
+            </div>
+
+            <!-- <button class="applyBtn">
+                Apply Now
+            </button> -->
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Recruitify</title>
+    <!-- icon cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- css -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <style>
+        .login-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 80px);
+            padding: 40px 20px;
+        }
+
+        .login-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            z-index: 10;
+        }
+
+        .login-title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .login-subtitle {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            outline: none;
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: var(--primary-color);
+            color: var(--white);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .login-button:hover {
+            background: #3e8e41;
+        }
+
+        .register-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .register-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .alert-error {
+            color: #d9534f;
+            background-color: #f2dede;
+            border: 1px solid #ebccd1;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .alert-success {
+            color: #3c763d;
+            background-color: #dff0d8;
+            border: 1px solid #d6e9c6;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main" id="home">
+        <div class="overlay">
+
+            <!-- header -->
+            <header id="mainHeader">
+                <div class="container">
+                    <div class="logo">
+                        <i class="fa-solid fa-users-viewfinder"></i>Recruitify
+                    </div>
+                    <nav id="nav">
+                        <a th:href="@{/}">Home</a>
+                        <a th:href="@{/#findJobs}">Find Jobs</a>
+                        <a th:href="@{/#jobCategories}">Job Categories</a>
+                        <a th:href="@{/#aboutUs}">About Us</a>
+                        <a th:href="@{/#footer}">Contact</a>
+                    </nav>
+                    <div class="auth-buttons">
+                        <a th:href="@{/login}"><button class="commonBtn"><i class="fa-solid fa-user"></i> Login</button></a>
+                        <a th:href="@{/register}"><button class="commonBtn"><i class="fa-solid fa-right-to-bracket"></i> Register</button></a>
+                    </div>
+                    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+                </div>
+            </header>
+
+            <!-- login section -->
+            <div class="login-section">
+                <div class="login-card">
+                    <h2 class="login-title">Welcome Back</h2>
+                    <p class="login-subtitle">Sign in to your account to continue</p>
+
+                    <form th:action="@{/login}" method="post">
+
+                        <!-- Error message and Logout message alerts -->
+                        <div th:if="${param.error}" class="alert-error">
+                            Invalid email or password. Please try again.
+                        </div>
+                        <div th:if="${param.logout}" class="alert-success">
+                            You have been successfully logged out.
+                        </div>
+                        <div th:if="${param.registerSuccess}" class="alert-success">
+                            Registration successful. Please login.
+                        </div>
+
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" name="email" required>
+
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-input" name="password" required>
+
+                        <button type="submit" class="login-button">Login</button>
+
+                        <p class="register-text">
+                            Don't have an account?
+                            <a th:href="@{/register}" class="register-link">Sign up</a>
+                        </p>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- custom js -->
+    <script th:src="@{/js/custom.js}"></script>
+</body>
+
+</html>

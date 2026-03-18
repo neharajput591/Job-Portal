@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Search</title>
+
+    <!-- icon cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+
+    <!-- <link rel="stylesheet" href="css/style.css" type="text/css"> -->
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <!-- <link rel="stylesheet" href="/css/style.css"> -->
+</head>
+
+<body>
+
+    <div class="main">
+        <div class="overlay">
+
+            <!-- header -->
+            <header id="mainHeader">
+                <div class="container">
+                    <div class="logo">
+                        <i class="fa-solid fa-users-viewfinder"></i>Recruitify
+
+                    </div>
+                    <nav id="nav">
+                        <a href="#">Home</a>
+                        <a href="#">Find Jobs</a>
+                        <a href="#">Companies</a>
+                        <a href="#">About Us</a>
+                        <a href="#">Contact</a>
+
+                    </nav>
+                    <div class="auth-buttons">
+                        <button class="commonBtn"><i class="fa-solid fa-user"></i> Login</button>
+                        <button class="commonBtn"><i class="fa-solid fa-right-to-bracket"></i>Register</button>
+                    </div>
+
+                    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+                </div>
+            </header>
+
+
+            <!-- hero section -->
+
+            <section class="hero">
+
+                <div class="container" data-aos="fade-right">
+                    <h1>Search Between More <br> Then <span>50,000</span> Open Jobs.</h1>
+                    <div class="keywords">
+                        <span>Trending jobs Keywords:</span>
+                        <a href="#">Web Designer</a>
+                        <a href="#">Web Developer</a>
+                        <a href="#">IOS Developer</a>
+                        <a href="#">Android Developer</a>
+
+                    </div>
+
+                    <div class="searchBar-outer">
+                        <div class="search-bar">
+                            <input type="text" placeholder="Search Keywords...">
+                            <select>
+                                <option value="">Location</option>
+                                <option value="">Delhi</option>
+                                <option value="">Indore</option>
+
+                            </select>
+
+                            <select>
+                                <option value="">Category</option>
+                                <option value="">Software</option>
+                                <option value="">Design</option>
+
+                            </select>
+                            <button>Search</button>
+                        </div>
+                    </div>
+
+                    <div class="user-area">
+                        <ul>
+                            <li><img th:src="@{/images/indian-professional-woman.webp}"></li>
+                            <li><img th:src="@{/images/working professional.webp}"></li>
+                            <li><img th:src="@{/images/indian-professional-woman.webp}"></li>
+                            <li><img th:src="@{/images/working professional.webp}"></li>
+                            <li><img th:src="@{/images/indian-professional-woman.webp}"></li>
+
+                            <div class="total-user">
+                                <h6>21K</h6>
+                                <span>Users</span>
+                            </div>
+
+                        </ul>
+
+                        <p>To Much People Have Connected With Us!</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+    <!-- about section -->
+
+    <section class="aboutSection">
+        <div class="left" data-aos="fade-left">
+            <h1>Suites Job For You</h1>
+            <p>There are manu variations of passages od lorem ipcust fasts fastsy by passages of lorem ipcust fasts
+                fastsby by humour</p>
+
+            <div class="features">
+                <div><i class="fa-regular fa-bookmark"></i> Bookmark Jobs</div>
+                <div><i class="fa-regular fa-id-card"></i> Apply With your Resume</div>
+                <div><i class="fa-regular fa-envelope"></i> Get notified</div>
+            </div>
+            <button class="btn">Browse Jobs</button>
+        </div>
+
+        <div class="right" data-aos="fade-right">
+            <img th:src="@{images/about.png}" alt="">
+            <div class="experience-badge">
+                <div class="years">25+</div>
+                <div class="text">
+                    <div>Years of</div>
+                    <div style="font-weight: bold;">Experience</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- popular jobs section -->
+
+    <section>
+        <div class="container">
+            <h2 class="heading" data-aos="zoom-in">Popular Job Categories</h2>
+            <h4 class="subheading" data-aos="zoom-in">2026 jobs live - 293 added Today.</h4>
+
+            <div class="grid" data-aos="fade-right">
+                <div class="category-card">
+                    <div class="icon-box">
+                        <!-- <img th:src="@{images/money.png}" alt=""> -->
+                        <img src="https://cdn-icons-png.flaticon.com/128/1538/1538357.png" alt="">
+
+                          <!-- <img src="https://www.shutterstock.com/image-vector/transparent-money-coins-icon-png-260nw-1946241166.jpg" alt=""> -->
+                    </div>
+                    <div class="category-content">
+                        <h4>Accounting / Finance</h4>
+                        <span>(2 open positions)</span>
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="icon-box">
+                        <!-- <img th:src="@{images/promotion.png}" alt=""> -->
+                         <img src="https://cdn-icons-png.flaticon.com/128/2907/2907972.png" alt="">
+
+                    </div>
+                    <div class="category-content">
+                        <h4>Marketing</h4>
+                        <span>(5 open positions)</span>
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="icon-box">
+                        <!-- <img th:src="@{images/design.png}" alt=""> -->
+
+                        <img src="https://cdn-icons-png.flaticon.com/128/2939/2939047.png" alt="">
+                    </div>
+                    <div class="category-content">
+                        <h4>Design</h4>
+                        <span>(43 open positions)</span>
+                    </div>
+                </div>
+
+                     <div class="category-card">
+                    <div class="icon-box">
+                        <!-- <img th:src="@{images/development.png}" alt=""> -->
+
+                        <img src="https://cdn-icons-png.flaticon.com/128/9750/9750216.png" alt="">
+                    </div>
+                    <div class="category-content">
+                        <h4>Development</h4>
+                        <span>(80 open positions)</span>
+                    </div>
+                </div>
+
+                     <div class="category-card">
+                    <div class="icon-box">
+                        <!-- <img th:src="@{images/hr.png}" alt=""> -->
+
+                        <img src="https://cdn-icons-png.flaticon.com/128/13728/13728428.png" alt="">
+                    </div>
+                    <div class="category-content">
+                        <h4>Human Resource</h4>
+                        <span>(2 open positions)</span>
+                    </div>
+                </div>
+
+                     <div class="category-card">
+                    <div class="icon-box">
+                        <!-- <img th:src="@{images/worker.png}" alt=""> -->
+
+                        <img src="https://cdn-icons-png.flaticon.com/128/9819/9819066.png" alt="">
+                    </div>
+                    <div class="category-content">
+                        <h4>Automotive jobs</h4>
+                        <span>(2 open positions)</span>
+                    </div>
+                </div>
+
+                     <div class="category-card">
+                    <div class="icon-box">
+                        <!-- <img th:src="@{images/support.png}" alt=""> -->
+
+                        <img src="https://cdn-icons-png.flaticon.com/128/9723/9723188.png" alt="">
+                    </div>
+                    <div class="category-content">
+                        <h4>Customer Service</h4>
+                        <span>(4 open positions)</span>
+                    </div>
+                </div>
+
+                     <div class="category-card">
+                    <div class="icon-box">
+                        <!-- <img th:src="@{images/healthcare.png}" alt=""> -->
+
+                        <img src="https://cdn-icons-png.flaticon.com/128/2966/2966334.png" alt="">
+                    </div>
+                    <div class="category-content">
+                        <h4>Healyth and Care</h4>
+                        <span>(2 open positions)</span>
+                    </div>
+                </div>
+
+                     <div class="category-card">
+                    <div class="icon-box">
+                        <!-- <img th:src="@{images/money.png}" alt=""> -->
+
+                        <img src="https://cdn-icons-png.flaticon.com/128/11445/11445709.png" alt="">
+                    </div>
+                    <div class="category-content">
+                        <h4>Project Management</h4>
+                        <span>(32 open positions)</span>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+    </section>
+
+    <!-- dream job section -->
+
+    <section class="dreamJobSection">
+        <div class="container">
+            <div class="images-section" data-aos="fade-right">
+                <div class="left-images">
+                    <!-- <img src="images/1.jpg" alt=""> -->
+                    <img src="https://i.pinimg.com/564x/cc/4a/98/cc4a980ea51e0b3e07b3e705d77e8670.jpg" alt="">
+                    <!-- <img src="images/2.jpg" alt=""> -->
+                     <img src="data:image/jpeg;base64,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" alt="">
+
+                </div>
+
+                <div class="middle-image">
+                    <!-- <img src="images/3.jpg" alt=""> -->
+                <img src="https://png.pngtree.com/png-clipart/20250205/original/pngtree-happy-woman-reacting-with-joy-on-her-phone-high-quality-photo-png-image_20311390.png" alt="">
+                    <!-- <img src="https://purepng.com/public/uploads/large/girls-5lh.png" alt=""> -->
+                </div>
+
+                <div class="play-button" onclick="openModal()">
+                    <i class="fa-solid fa-play"></i>
+                </div>
+            </div>
+
+            <div class="content-area" data-aos="fade-left">
+                <h1>Get the job of your dreams quick & easy.</h1>
+                <p>Search all the open position on the web. Get your own personalized salary estimated. read more</p>
+                <ul>
+                    <li>Digital Marketing Soluation for Tommorrow</li>
+                    <li>Digital Marketing Soluation for Tommorrow</li>
+                    <li>Digital Marketing Soluation for Tommorrow</li>
+                    <li>Digital Marketing Soluation for Tommorrow</li>
+                    <li>Digital Marketing Soluation for Tommorrow</li>
+                    <li>Digital Marketing Soluation for Tommorrow</li>
+                    <li>Digital Marketing Soluation for Tommorrow</li>
+                    <li>Digital Marketing Soluation for Tommorrow</li>
+                    <li>Digital Marketing Soluation for Tommorrow</li>
+                     
+                </ul>
+                <button class="btn">Contact Us</button>
+
+            </div>
+
+
+        </div>
+
+        <div id="videoModal" class="video-modal" onclick="closeModal(event)">
+            <span class="close-btn" onclick="closeModal(event)">&times;</span>
+            <video id="modalVideo" controls>
+                <source th:src="@{images/videoofgirlworkingonlaptop.mp4}" type="video/mp4">
+                <!-- <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"> -->
+                Your Browser does not support it.
+                 
+            </video>
+        </div>
+    </section>
+
+
+    <!-- featured section -->
+
+    <section class="featuredSection">
+        <h2 class="heading" data-aos="zoom-in">Featured Jobs</h2>
+        <p class="subheading" data-aos="zoom-in">Know your worth and find the job that quality your life</p>
+
+        <div class="job-container" data-aos="fade-right">
+            <div class="job-card" th:each="jobs:${job}">
+                <img th:src="@{images/microsoftLogo.png}" alt="" class="job-logo">
+                <div class="job-info">
+                    <div class="job-title" th:text="${jobs.title}"></div>
+                    <div class="company-details">
+                        <img th:src="@{images/skills.png}" alt=""> &nbsp;
+                        <span th:text="${jobs.skillsRequired}"></span>
+                        <img th:src="@{images/location.png}" alt=""> &nbsp;
+                        <span th:text="${jobs.location}"></span>
+                        <img th:src="@{images/microsoftLogo.png}" alt=""> &nbsp;
+                        <span th:text="${jobs.companyName}"></span>
+                        <img th:src="@{images/payment.png}" alt=""> &nbsp;
+                        
+                        <span th:text="@{jobs.salary}"></span>
+
+
+                    </div>
+
+                    <div class="badges">
+                        <span class="badge fulltime">Full Time</span>
+                        <span class="badge parttime">Part Time</span>
+                        <span class="badge urgent">Urgent</span>
+                    </div>
+
+                </div>
+
+                <div class="bookmark">
+                    <img th:src="@{images/bookmark.png}" alt="">
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <button class="btn">Load More Listing</button>
+    </section>
+
+
+
+
+
+
+    <!-- aos animation js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <!-- custom js -->
+    <script th:src="@{/js/custom.js}"></script>
+
+    <!-- testimonial js -->
+    <script src="js/testimonial.js"></script>
+</body>
+
+</html>

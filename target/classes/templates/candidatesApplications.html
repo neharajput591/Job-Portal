@@ -1,0 +1,263 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidates Applications</title>
+</head>
+<body>
+    
+    <h1>Candidate Application</h1>
+
+    <table>
+        <tr>
+            <th>
+                Application Id 
+            </th>
+
+            <th>Candidate Id</th>
+            <th>Resume</th>
+            <th>Applied Date</th>
+
+            <th>Status</th>
+        </tr>
+
+        <tr th:each="candidate:${candidateList}">
+
+            <td th:text="${candidate.application_id}"></td>
+            <td th:text="${candidate.candidateId}"></td>
+            
+            <td>
+    <a th:href="@{'/uploads/'+${candidate.resumeUrl}}" target="_blank">View Resume</a>
+</td>
+            <td th:text="${candidate.appliedDate}"></td>
+
+            <td>
+                <button ><a th:href="@{/Recruiter/Hire/{application_id}(application_id=${candidate.application_id})}">Accept</a></button>
+                <button><a th:href="@{/Recruiter/Reject/{application_id}(application_id=${candidate.application_id})}">Reject</a></button>
+            </td>
+        </tr>
+    </table>
+
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidates Applications</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #eef2f3, #dfe9f3);
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: linear-gradient(135deg, #1f4e79, #4db6ac);
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        /* PAGE CONTAINER */
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        /* CARD */
+
+        .table-card {
+            background: white;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-card h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* TABLE */
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow: hidden;
+        }
+
+        th {
+            background: #1f4e79;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+        }
+
+        tr:hover {
+            background: #f9f9f9;
+        }
+
+        /* BUTTONS */
+
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .actions a {
+            text-decoration: none;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        .accept {
+            background: #2ecc71;
+        }
+
+        .reject {
+            background: #e74c3c;
+        }
+
+        /* RESUME BUTTON */
+
+        .resume-btn {
+            background: #3498db;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .resume-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* EMPTY STATE */
+
+        .empty {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 16px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <div class="header">
+        <div class="logo">👜 JobHub Recruiter</div>
+    </div>
+
+
+    <div class="container">
+
+        <div class="table-card">
+
+            <h1>Candidate Applications</h1>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Application ID</th>
+                        <th>job Title</th>
+                        <th>Candidate ID</th>
+                        <th>Candidate Name</th>
+                        <th>Resume</th>
+                        <th>Applied Date</th>
+                        <th>Actions</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr th:each="candidate:${candidateList}">
+
+                        <td th:text="${candidate.application_id}"></td>
+                        <td th:text="${candidate.jobTitle}"></td>
+
+                        <td th:text="${candidate.candidateId}"></td>
+                        <td th:text="${candidate.candidateName}"></td>
+
+                        <td>
+                            <a class="resume-btn" th:href="@{'/uploads/'+${candidate.resumeUrl}}" target="_blank">
+                                View Resume
+                            </a>
+                        </td>
+
+                        <td th:text="${candidate.appliedDate}"></td>
+
+                        <td class="actions">
+
+                            <a class="accept"
+                                th:href="@{/Recruiter/Hire/{application_id}(application_id=${candidate.application_id})}">
+                                Accept
+                            </a>
+
+                            <a class="reject"
+                                th:href="@{/Recruiter/Reject/{application_id}(application_id=${candidate.application_id})}">
+                                Reject
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <!-- Empty State -->
+
+            <div class="empty" th:if="${#lists.isEmpty(candidateList)}">
+                No applications received yet for this job.
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

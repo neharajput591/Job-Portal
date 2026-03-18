@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+
+<style>
+    /* Page Background */
+    body {
+        margin: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: linear-gradient(120deg, #084981, #2fa39a);
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Top Navigation */
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 40px;
+    }
+
+    .logo {
+        color: white;
+        font-size: 22px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+    }
+
+    .create-account-btn {
+        background: #4ade80;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 500;
+    }
+
+    /* Center Login Container */
+    .login-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* background-color: #315b8e; */
+    }
+
+    /* Login Card */
+    .login-card {
+        width: 380px;
+        padding: 40px;
+        /* background: rgba(175, 26, 26, 0.15); */
+         background-color: #5d7897;
+        backdrop-filter: blur(12px);
+        border-radius: 15px;
+        color: white;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Title */
+    .login-title {
+        text-align: center;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .login-subtitle {
+        text-align: center;
+        margin-top: 8px;
+        margin-bottom: 25px;
+        font-size: 14px;
+        color: #e4e4e4;
+    }
+
+    /* Form Labels */
+    .form-label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 14px;
+    }
+
+    /* Input Fields */
+    .form-input {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 12px;
+        margin-bottom: 18px;
+        outline: none;
+    }
+
+    /* Login Button */
+    .login-button {
+        width: 100%;
+        padding: 8px;
+        border: none;
+        border-radius: 8px;
+        background: linear-gradient(90deg, #38ef7d, #11998e);
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    /* Footer Text */
+        .register-text {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 14px;
+        }
+
+        .register-link {
+            color: #aef3d7;
+            text-decoration: none;
+        }
+</style>
+
+<body>
+
+    <!-- Header -->
+    <div class="header">
+
+        <div class="logo">💼 JobHub</div>
+
+        <a th:href="@{/register}">
+            <button class="create-account-btn">Create Account</button>
+        </a>
+
+    </div>
+
+    <div class="login-container">
+
+        <div class="login-card">
+            <h2 class="login-title">Welcome Back</h2>
+            <p class="login-subtitle">Sign in to your account to continue</p>
+
+            <form th:action="@{/login}" method="post">
+
+                <!-- Error message and Logout message alerts -->
+                <div th:if="${param.error}">
+                    <p style="color: red;">Invalid email or password. Please try again.</p>
+                </div>
+                <div th:if="${param.logout}">
+                    <p style="color: green;">You have been successfully logged out.</p>
+                </div>
+                <div th:if="${param.registerSuccess}">
+                    <p style="color: green;">Registration successful. Please login.</p>
+                </div>
+
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-input" name="email" required>
+
+                <label class="form-label">Password</label>
+                <input type="password" class="form-input" name="password" required>
+
+                <button type="submit" class="login-button">Login</button>
+
+                <p class="register-text">
+                    Don't have an account?
+                    <a th:href="@{/register}" class="register-link">Sign up</a>
+                </p>
+
+            </form>
+
+        </div>
+    </div>
+    <!-- <form th:action="@{/login}" method="post">
+
+        Email:
+        <input type="email" name="username" required>
+
+        password:
+        <input type="password" name="password" required>
+
+
+        <button type="submit">Login</button>
+
+    </form> -->
+</body>
+
+</html>

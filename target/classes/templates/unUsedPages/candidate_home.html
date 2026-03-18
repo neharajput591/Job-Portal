@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Candidate Dashboard - Job Portal</title>
+</head>
+<body>
+    <h1>Welcome to the Candidate Dashboard</h1>
+    <p>You have successfully logged in!</p>
+    <h2>Update Profile</h2>
+
+    <!-- <button><a th:href="@{/Candidate/candidate_profile_update/{candidateId}(candidateId=${Candidate.candidateId})}"></a> Update</button> -->
+
+    <form th:action="@{/Candidate/candidate_profile}" th:object="${candidateProfile}" method="post">
+
+        <input type="email" th:field="*{email}">
+        
+        <label for="">name</label>
+        <input type="text" name="name" required>
+
+        <label for="">Age</label>
+        <input type="number" name="age" >
+
+        <label for="">Skills</label>
+        <input type="text" name="skills" >
+
+        <label for="city">City:</label>
+        <input type="text" name="city" >
+
+        <label for="state">State</label>
+        <input type="text" name="state" >
+
+        <label for="country">Country</label>
+        <input type="text"  name="country" >
+
+        <label for="contact">Contact</label>
+        <input type="number" name="contact" >
+
+        <label for="aboutcandidate">About</label>
+        <input type="text" name="aboutcandidate" >
+
+        <label for="experience">Experience</label>
+        <input type="number" name="experience" >
+
+        <label for="education">Education</label>
+        <input type="text" name="education" >
+
+        <button type="submit">Submit</button>
+
+
+    </form>
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Logout</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Home</title>
+
+    <style>
+        html,
+        body {
+            margin: 0%;
+            padding: 0%;
+            line-height: 30%;
+            max-width: 100%;
+            max-height: 100%;
+            /* background-color: aquamarine; */
+        }
+
+        .allJob {
+            box-shadow: 8px 4px 8px 5px grey;
+            width: 800px;
+            height: 200px;
+            padding-left: 30px;
+            margin: auto;
+            border-radius: 5px;
+            transition: 0.3s;
+            /* text-align: center; */
+            /* align-items: center; */
+            /* position: relative; */
+        }
+
+        .allJob:hover {
+            transform: translateY(-10px);
+        }
+
+        .Jobtitle {
+            margin: 50px;
+            padding-top: 50px;
+            padding-left: 30px;
+            text-align: center;
+
+            /* background-color: brown; */
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Welcome Candidate </h1>
+        <button><a th:href="@{/Candidate/UpdateProfile}">Update Profile</a></button>
+        <button><a th:href="@{/Candidate/ApplicationUpdate}">Application Update</a></button>
+    </div>
+
+
+    <div class="allJob" th:each="job:${jobs}">
+
+        <a th:href="@{/job/jobdetail/{jobId}(jobId=${job.jobId})}">
+            <h3 th:text="${job.title}" class="Jobtitle"></h3>
+
+            <div class="viewAll">
+
+                <span th:text="${job.companyName}" class="companyName"></span>
+                <span th:text="${job.location}"></span>
+
+                <span th:text="${job.salary}" style="margin-left: 20px "></span><br>
+
+                <h4 th:text="${job.skillsRequired}"></h4>
+
+            </div>
+        </a>
+
+        <button><a th:href="@{/job/applynow/{jobId}(jobId=${job.jobId})}" onclick="applicationSuccess()">Apply Now</a></button>
+        <p style="color: red;">By clicking on "Apply Now" your application will be directly shared to recruiter according to your Profile <br><br>
+            <br> So please check your profile and update it if needed.
+        </p>
+
+        <!-- </div> -->
+
+    </div>
+
+
+
+    <script>
+
+        function applicationSuccess(){
+            alert("Applied Successfully");
+        }
+    </script>
+</body>
+
+</html>

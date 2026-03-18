@@ -1,0 +1,979 @@
+/* font import */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* common css */
+:root{
+    --primary-color: #44b678;
+    --white: #fff;
+    --light-green:#24d671; 
+
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,html{
+    background: linear-gradient(45deg,#e4f6ea33,transparent);
+    font-family: "Montserrat",sans-serif;
+}
+body::-webkit-scrollbar{width:10px;}
+body::-webkit-scrollbar-thumb{
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+.heading{
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 32px;
+    font-weight: 600;
+    margin-top: 50px;
+    color: var(--primary-color);
+}
+
+.subheading{
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: 500;
+}
+
+.main{
+    background: url('../images/girlswithtab.jpg') no-repeat center center/cover;
+
+    /* background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi8IE77Nvq1PqDX4QBSobZQAE2f1dZvcsvww&s") no-repeat center center/cover; */
+}
+
+.overlay{
+    background: linear-gradient(to right,
+        rgb(50 50 50 / 92%) 20%,
+        rgb(50 50 50 / 50%) 50%,
+        rgba(50,50 , 50 , 0.1)80%,
+        rgba(50 , 50 , 50 , 0)100%);
+
+        width: 100%;
+        height: 100%;
+
+}
+
+.container{
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* header */
+header .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+#mainHeader.fixed{
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* background: black; */
+    /* background: rgba(15, 15, 15, 0.85); */
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    z-index: 9999;
+
+}
+
+#mainHeader{
+    transition: all 0.3s ease;
+    padding: 0px 20px;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--white);
+}
+
+.logo i{
+    margin-right: 10px;
+    color: var(--primary-color);
+
+}
+
+nav{
+    display: flex;
+    gap: 30px;
+
+}
+
+nav a{
+    color: var(--white);
+    text-decoration: none;
+}
+
+nav a:hover{
+    color: var(--light-green);
+}
+
+.auth-buttons{
+    display: flex;
+    gap: 20px;
+}
+
+.login{
+    color: var(--white);
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+}
+
+.login:hover{
+    color: var(--primary-color);
+    background: var(--white);
+}
+
+.commonBtn {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 10px 20px;
+    border: none;
+    font-size: 17px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.commonBtn:hover{
+    background: var(--white);
+    color: var(--primary-color);
+
+}
+
+.menu-toggle{
+    display: none;
+    font-size: 24px;
+    color: var(--white);
+    cursor: pointer;
+}
+
+/* hero section */
+
+.hero .container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: calc(100vh - 80px);
+}
+
+.hero h1{
+    font-size: 48px;
+    max-width: 700px;
+    line-height: 1.2;
+    color: var(--white);
+}
+
+.hero h1 span{
+    color: var(--light-green);
+    background: rgba(38, 174,97, 0.2);
+    border-radius: 4px;
+    padding: 0px 10px;
+}
+
+.keywords{margin: 20px 0;}
+.keywords span{
+    color: var(--white);
+    font-weight: bold;
+}
+.keywords a{
+    margin-left: 10px;
+    color: var(--light-green);
+    background: rgba(38, 174,97, 0.2);
+    border-radius: 4px;
+    padding: 5px 10px;
+    text-decoration: none;
+}
+
+.searchBar-outer{
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 7px;
+    border-radius: 40px;
+    margin-bottom: 20px;
+    max-width: 800px;
+}
+
+.search-bar{
+    display: flex;
+    flex-wrap: wrap;
+    background: var(--white);
+    padding: 10px;
+    border-radius: 50px;
+    max-width: 800px;
+}
+
+.search-bar input{
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+    margin: 0px 3px;
+    font-size: 17px;
+}
+
+.searchButton{
+     background: var(--primary-color);
+    color: var(--white);
+    /* padding: 10px 20px; */
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    border: none;
+    border-radius: 0px 30px 30px 0px;
+    cursor: pointer;
+    margin: -10px;
+    width: 133px;
+    font-size: 16px;
+    line-height: 40px;
+    margin-left: 402.5px;
+}
+
+/* .search-bar  button{
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 0px 30px 30px 0px;
+    cursor: pointer;
+    margin: -10px;
+    width: 133px;
+    font-size: 16px;
+    line-height: 40px;
+    margin-left: 17px;
+} */
+
+.user-area{
+    display: flex;
+    align-items: center;
+}
+
+.user-area ul{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.user-area ul li{
+    height: 46px;
+    width: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--white);
+    box-shadow: 2px 2px 4px rgba(0, 167, 172, 0.1);
+    border-radius: 50%;
+    margin-left: -15px;
+}
+
+.user-area ul li:nth-child(1){
+    margin-left: 0px;
+}
+
+.user-area ul li img{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.user-area ul li .total-user{
+    text-align: center;
+    line-height: 1;
+}
+
+.user-area ul .total-user h6 {
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--primary-color);
+
+}
+
+.user-area ul .total-user span{
+    font-size: 11px;
+    font-weight: 500;
+    color: #3333;
+    line-height: 1;
+    display: inline-block;
+}
+
+.user-area p{
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--white);
+    margin-bottom: 0px;
+}
+
+/* about section */
+
+.aboutSection{
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.left{
+    flex: 1;
+    min-width: 300px;
+}
+.left h1{
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #222;
+
+}
+
+.left p{
+   margin: 20px 0;
+   font-size: 1.1rem;
+   border-left: 3px solid var(--light-green);
+   padding-left: 20px;
+}
+
+.features{
+    margin: 20px 0;
+}
+
+.features div{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+.features i{
+    font-size: 1.2rem;
+    color: var(--light-green);
+    margin-right: 10px;
+    padding-right: 4px;
+    width: 27px;
+    text-align: center;
+}
+
+.btn{
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 12px 30px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s;
+}
+
+.btn:hover{
+background: #3e8e41 ;
+}
+
+.right{
+    flex: 1;
+    min-width: 300px;
+    position: relative;
+}
+
+.right img{
+    max-width: 100%;
+}
+
+.experience-badge{
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+    background: white;
+    padding: 20px 30px;
+    border-top-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    border-right: 4px solid var(--light-green);
+
+}
+
+.experience-badge .years{
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--light-green);
+}
+
+/* popular job section */
+
+.grid{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.category-card{
+    flex: 1 1 calc(33.33% - 20px);
+    background: white;
+    border: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    transition: 0.3s ease;
+}
+
+.category-card:hover{
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transform: translateY(-4px);
+}
+
+.icon-box{
+    background: var(--primary-color);
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-box img{
+    max-width: 40px ;
+    height: 40px;
+}
+
+.category-content h4{
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.category-content span{font: 14px;}
+
+/* dream job section */
+
+.dreamJobSection{
+    margin-top: 50px;
+}
+
+.dreamJobSection .container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.images-section{
+    display: flex;
+    flex: 1;
+    min-width: 600px;
+    position: relative;
+    gap: 20px;
+    justify-content: center;
+}
+
+.left-images{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 10px;
+}
+
+.left-images img,
+.middle-image img{
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.middle-image{
+    position: relative;
+    margin-top: 100px;
+
+}
+
+.play-button{
+    width: 80px;
+    height: 80px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 10;
+}
+
+.play-button i{
+    color: var(--primary-color);
+    font-size: 25px;
+}
+
+.content-area {
+
+    flex: 1 1 300px;
+    color: #0d1c3d;
+    margin-bottom: 15px;
+}
+
+.content-area p{
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.content-area ul{
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.content-area ul li{
+    font-size: 14px;
+    color: #556;
+    margin: 17px 0;
+    position: relative;
+    padding-left: 25px;
+}
+
+.content-area ul li::before{
+    content: "\f00c";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-size: 10px;
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    background: var(--primary-color);
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--white);
+}
+
+.video-modal{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.video-modal.active{
+    display: flex;
+}
+.video-modal video{
+    width: 80%;
+    max-width: 700px;
+    border-radius: 10px;
+}
+
+.close-btn{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+/* featured section */
+
+.featuredSection{
+    text-align: center;
+    padding: 60px 20px;
+}
+.featuredSection .heading {
+    color: var(--primary-color);
+}
+.jobs-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1100px;
+    margin: auto;
+    margin-top: 40px;
+}
+.job-card{
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    border: 1px solid #f0f0f0;
+    width: calc(50% - 10px);
+    text-align: left;
+    padding: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    position: relative;
+    gap: 20px;
+    transition: 0.3s ease;
+}
+.job-card:hover{
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.job-logo{
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    object-fit: contain;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.job-info{
+    flex: 1;
+}
+.job-title{
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #222;
+}
+.company-details{
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+.company-details span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.company-details i{
+    color: #aaa;
+    font-size: 14px;
+}
+.badges{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.badge{
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.fulltime{
+    background: #eef2ff;
+    color: #4f46e5;
+}
+.private{
+    background: #ecfdf5;
+    color: #10b981;
+}
+.urgent{
+    background: #fffbeb;
+    color: #f59e0b;
+}
+
+.bookmark{
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    font-size: 20px;
+    color: #ccc;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.bookmark:hover{
+    color: var(--primary-color);
+}
+
+@media(max-width: 768px){
+    .job-card{
+        width: 100%;
+    }
+}
+
+/* counter section */
+.counter-section{
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1100px;
+    margin: 50px auto;
+}
+
+.counter-box{
+    /* background: var(--light-green); */
+    background: var(--primary-color);
+    color: var(--white);
+    flex: 1 1 200px;
+    max-width: 250px;
+    text-align: center;
+    padding: 40px 20px;
+}
+.counter-number{
+    font-size: 30px;
+    font-weight: 700;
+
+}
+.separator{
+    width: 30px;
+    height: 2px;
+    background: #fff;
+    margin: 10px auto;
+}
+.counter-text{
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* testimonial section */
+
+.testimonial-section{
+    background: url("../images/girlswithtab.jpg") no-repeat center/cover;
+    padding: 50px 20px;
+    color: white;
+    position: relative;
+    max-width: 1200px;
+    margin: 50px auto;
+    border-radius: 8px;
+}
+.testimonialHeading{
+    color: white;
+    z-index: 99999;
+    position: absolute;
+    top: 15px;
+}
+.testimonial-section::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+
+}
+.testimonial-content{
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.testimonial-img{
+    width: 120px;
+    border-radius: 10px;
+}
+.testimonial-text{
+    max-width: 600px;
+
+}
+
+.testimonial-text h3{
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+.testimonial-text p{
+    font-size: 14px;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+.stars{color: gold;}
+.name{font-weight: 600;}
+.role{
+    color: #00bfff;
+    font-size: 13px;
+    margin-left: 5px;
+}
+.arrow{
+    position: absolute;
+    top: 13%;
+    transform: translateY(-50%);
+    background: #fff;
+    color: #000;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+.arrow.leftArrow{right: 54px;}
+.arrow.rightArrow{right: 10px;}
+
+/* footer */
+
+#backToTop{
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999;
+    background: var(--primary-color);
+    color: white;
+    border: 3px solid var(--primary-color);
+    padding: 9px 13px;
+    font-size: 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    display: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+#backToTop:hover{
+    background: var(--white);
+    border: 3px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.footer{
+    /* background: url('../images/girlswithtab.jpg'); */
+    /* background: url("https://lh5.googleusercontent.com/proxy/TzE1Xh7bgQLRd_2Kafy8cB0BUfMhUaGibecgXcisyMPQQbaBXxC_Cn_l_UxakSso9zhUoL1A0KevQjL0fjyx8sFreAekVNXBlj4-Z0QsQ39O0jasfzOD"); */
+    background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpNHktz1qPY4eT7OV43_C2VfI1HZCiFmJLVw&s");
+    background-size: 60%;
+    background-repeat: repeat-x;
+    background-position: bottom;
+}
+
+.footer .container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.footer .column{
+    flex: 1;
+    margin: 10px;
+}
+.footer h3{
+    margin-bottom: 10px;
+}
+
+.footer p,
+.footer a{
+    text-decoration: none;
+    display: block;
+    color: black;
+    font-size: 14px;
+    margin: 15px 0;
+    transition: all 0.3s ease-in-out;
+}
+.footer p,
+.footer a:hover,
+.footer p,
+.footer a:focus{
+    color: var(--primary-color);
+    letter-spacing: 0.6px;
+}
+.column a i{
+     font-size: 10px;
+}
+
+.social-icons a{
+
+    color: var(--primary-color);
+    padding: 5px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+
+}
+
+.social-icons a i{font-size: 35px;}
+.copyright{
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* responsive screen */
+@media(max-width:768px){
+    #mainHeader.fixed{padding: 0px 20px;}
+    nav{
+        display: none;
+        flex-direction: column;
+        background: black;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        width: 200px;
+        padding: 20px;
+    }
+    nav.active{
+        display: flex;
+        z-index: 9999;
+    }
+    .menu-toggle{display: block;}
+    .auth-buttons{display: none;}
+    .hero{height: 100%;}
+    .hero .container{height: 100%;}
+    .hero h1{font: 32px; padding-top: 50px;}
+    .keywords a{margin-top: 10px; display: inline-block;}
+    .search-bar{flex-direction: column; border-radius: 0px;}
+    .search-bar input{background: transparent;}
+    .searchBar-outer{border-radius: 0;}
+    .searchButton{
+        width: 100%;
+        border-radius: inherit;
+        line-height: 20px;
+        margin: 0;
+        border-radius: 0;
+
+    }
+
+    .user-area{flex-wrap: wrap; justify-content: center; gap: 10px;}
+    .category-card{flex: 1 1 100%;}
+    .experience-badge{position: static; margin-top: 20px; align-self: flex-start;}
+    .play-button{position: static; transform: none; margin: 10px auto;}
+    .images-section{flex-direction: column; min-width: 100%;}
+    .middle-image{margin-top: 0px;}
+    .left-images img,
+    .middle-image img{width: 100%;}
+
+    .featuredSection{padding: 20px;}
+    .job-card{flex-direction: column; align-items: center; text-align: center;}
+    .job-info{align-items: center;}
+    .bookmark{right: 10px; top: 10px;}
+    .counter-box{max-width: 100%;}
+    .testimonial-content{flex-direction: column; text-align: center;}
+    .testimonial-img{margin-bottom: 20px;}
+    .footer{flex-direction: column; align-items: center;}
+    .footer .container{
+        flex-direction: column;
+    }
+
+}

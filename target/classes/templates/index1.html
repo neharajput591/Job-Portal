@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index1</title>
+
+    <!-- <style>
+        html{
+            scroll-behavior: smooth;
+        }
+        :root {
+            --bg-color: #0b0f19;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #6366f1;
+            --secondary: #ec4899;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            /* overflow-x: hidden; */
+            position: relative;
+            /* margin-right: 8px; */
+        }
+
+        /* Abstract Background Elements */
+        .bg-glow-1 {
+            position: absolute;
+            top: 1%;
+            left: 1%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(11, 15, 25, 0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            /* animation: pulse 10s infinite alternate; */
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            bottom: 1%;
+            right: 1%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.1) 0%, rgba(11, 15, 25, 0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            /* animation: pulse 12s infinite alternate-reverse; */
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 1rem;
+            display: inline-block;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-main);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+        }
+
+        .heading {
+            margin-left: 20rem;
+            margin-top: 10vb;
+            font-size: 3rem;
+            color: var(--text-main);
+        }
+
+        .subheading {
+            color: var(--text-muted);
+            margin-left: 5rem;
+            padding: 1.2rem;
+            text-align: center;
+
+        }
+
+        .image {
+            height: 25px;
+            width: 25px;
+        }
+
+        /* .feature-card{
+            margin: 50px;
+        } */
+
+        .features {
+            display: grid;
+            /* display: flexbox; */
+            grid-template-columns: repeat(4, 250px);
+            /* grid-template-columns: max-content; */
+            gap: 2rem;
+            max-width: 400px;
+
+            width: 100%;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            padding: 1rem;
+            padding-right: 1px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            text-align: left;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            margin-left: 0px;
+            margin-bottom: 10px;
+            max-width: 250px;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.04);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card-span {
+            font-size: 23px;
+            text-align: center;
+            padding-bottom: 5px;
+            padding-left: 10px;
+        }
+
+        .arrow {
+            margin-left: 10px;
+            height: 15px;
+            width: 15px;
+        }
+
+        .top-company {
+            /* display: flex; */
+            justify-content: center;
+            /* flex-wrap: wrap; */
+            margin-left: 35px;
+            margin-right: 45px;
+            gap: 2rem; 
+            display: grid;
+             grid-template-columns: repeat(2,350px);
+
+        }
+
+        .top-company-hiring {
+            text-align: center;
+            font-size: 25px;
+            padding: 15px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .top-company-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            padding: 1rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            text-align: left;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            /* width: 260px; */
+            /* margin: auto; */
+                /* display: grid; */
+            /* display: flexbox; */
+            /* grid-template-columns: repeat(2, 250px); */
+        }
+
+        .top-company-tag {
+            color: var(--text-muted);
+            font-size: 14px;
+            padding-top: 8px;
+        }
+
+        .top-company-icon {
+            margin-top: 12px;
+            margin-right: 10px;
+            padding: 5px;
+            border-radius: 5px;
+            border-color: white;
+            border-width: 1px;
+            border-style: solid;
+            height: 40px;
+            width: 40px;
+        }
+
+        .domain {
+            border-radius: 5px;
+            border-color: #0b0f19;
+            border-style: solid;
+            background-color: #cab7d7;
+            position: relative;
+            display: flex;
+            margin: 30px;
+            color: var(--bg-color);
+            /* color: #0b0f19; */
+        }
+
+        .domain img {
+            /* position: absolute;
+            right: 0;
+            bottom: 0; */
+            /* height: ; */
+            height: 320px;
+            width: 300px;
+            margin-right: 100px;
+            margin-left: 100px;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+
+        .skill {
+            display: flex;
+            flex-wrap: wrap;
+            /* gap: 10px; */
+            justify-content: center;
+            align-items: center;
+            /* width: 50%; */
+            border-radius: 5px;
+            border-color: #0b0f19;
+            border-style: solid;
+            width: 650px;
+            margin-left: 80px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 0;
+
+        }
+
+        .specific {
+            /* font-size: 30px;
+            font-weight: 600; */
+            border-radius: 5px;
+            border-color: #0b0f19;
+            border-style: solid;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            width: 180px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            margin-left: 5px;
+            margin-right: 4px;
+
+        }
+
+        .about{
+            margin: 30px;
+            margin-top: 0px;
+        }
+        .about-heading{
+            color: var(--text-main);
+            padding-bottom: 20px;
+            /* padding-left: 10px; */
+            justify-content: center;
+            text-align: center;
+            font-size: 50px;
+        }
+
+        .about-content{
+            font-size: 25px;
+            letter-spacing: normal;
+            word-spacing: normal;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+    </style> -->
+
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #eef2f3, #dfe9f3);
+            color: #333;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 60px;
+            background: linear-gradient(135deg, #1f4e79, #4db6ac);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 18px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .btn-outline {
+            border: 1px solid white;
+            color: white;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #1f4e79;
+        }
+
+        /* HERO */
+
+        .heading {
+            text-align: center;
+            margin-top: 70px;
+            font-size: 40px;
+            color: #333;
+        }
+
+        .subheading {
+            text-align: center;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        /* FEATURES */
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            padding: 50px 60px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card img {
+            height: 25px;
+            width: 25px;
+        }
+
+        .feature-card-span {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        /* TOP COMPANIES */
+
+        .top-company-hiring {
+            text-align: center;
+            font-size: 26px;
+            margin-top: 20px;
+        }
+
+        .top-company {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            padding: 40px 60px;
+        }
+
+        .top-company-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .top-company-tag {
+            font-size: 14px;
+            color: #777;
+            margin-top: 5px;
+        }
+
+        .top-company-icon {
+            height: 40px;
+            width: 40px;
+            margin: 10px 8px 0 0;
+        }
+
+        /* DOMAIN */
+
+        .domain {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px 60px;
+            background: white;
+            margin: 30px 60px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .skill {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            max-width: 600px;
+        }
+
+        .specific {
+            padding: 8px 15px;
+            background: #eef2f3;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .domain img {
+            width: 280px;
+        }
+
+        /* ABOUT */
+
+        .about {
+            padding: 60px;
+        }
+
+        .about-heading {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .about-main {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .about-main img {
+            width: 200px;
+        }
+
+        .about-content {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* FOOTER */
+
+        .footer {
+            background: #1f4e79;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+        }
+
+
+        /* .top-company-card img:last-child{
+width:18px;
+height:18px;
+float:right;
+margin-top:-25px;
+} */
+
+        .arrow-icon {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: 0.2s;
+        }
+
+        .arrow-icon:hover {
+            transform: translateX(4px);
+            opacity: 1;
+        }
+
+        .footer {
+            background: #1f4e79;
+            color: white;
+            margin-top: 60px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            padding: 40px 60px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 10px;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            display: block;
+            text-decoration: none;
+            color: white;
+            margin-bottom: 6px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .footer-section p {
+            font-size: 14px;
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 15px;
+            background: #173a5e;
+            font-size: 14px;
+        }
+
+
+
+
+        .allJob {
+            box-shadow: 8px 4px 8px 5px grey;
+            width: 800px;
+            /* height: 200px; */
+            padding-left: 30px;
+            margin: auto;
+            border-radius: 5px;
+            transition: 0.3s;
+            margin-bottom: 10px;
+            padding-top: 10px;
+            padding-bottom: 15px;
+            /* text-align: center; */
+            /* align-items: center; */
+            /* position: relative; */
+        }
+
+        .viewAll{
+            box-shadow: 8px 4px 8px 5px grey;
+            /* width: 600px; */
+            /* height: 200px; */
+            padding-left: 30px;
+            padding-bottom: 20px;
+            /* display: flex; */
+            /* flex-wrap: wrap; */
+            /* padding-right: 30px; */
+            /* margin-right: 300px; */
+            /* margin: auto; */
+            border-radius: 5px;
+            transition: 0.3s;
+            margin-bottom: 10px;
+            margin-right: 20px;
+            margin-top: 10px;
+        }
+
+        .viewAlljob{
+            box-shadow: 8px 4px 8px 5px grey;
+            width: 600px;
+            /* height: 200px; */
+            padding-left: 30px;
+            padding-bottom: 20px;
+            margin: auto;
+            border-radius: 5px;
+            transition: 0.3s;
+            
+        }
+
+        .allJob:hover {
+            transform: translateY(-10px);
+        }
+
+        .Jobtitle {
+            margin: 30px;
+            padding-top: 30px;
+            padding-left: 30px;
+            text-align: center;
+
+            /* background-color: brown; */
+        }
+
+
+                .searchBox {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 30px 60px;
+        }
+
+        .searchBox input {
+            width: 400px;
+            padding: 12px;
+            border-radius: 25px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        .searchBox button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            background: #2ecc71;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+
+    <nav>
+        <a href="/" class="logo">
+            JobHub
+        </a>
+
+        <div class="nav-links">
+            <a href="#domain">Find Jobs</a>
+            <a href="#top-company">Companies</a>
+            <a href="#about">About Us</a>
+        </div>
+        <div class="auth-buttons">
+            <a th:href="@{/login}" class="btn btn-outline">Log In</a>
+            <a th:href="@{/register}" class="btn btn-primary">Sign Up</a>
+        </div>
+    </nav>
+
+    <h1 class="heading">Find Your Dream Job Now</h1>
+
+    <h2 class="subheading">5 lakh+ jobs for you to explore</h2>
+
+
+    <div class="searchBox">
+
+        <!-- <input type="text" placeholder="Search jobs, skills or company..."> -->
+
+        <form th:action="@{/index1/search}" method="get" class="searchBox">
+
+            <input type="text" name="keyword" placeholder="Search jobs, skills or company">
+
+            <button type="submit">Search</button>
+
+        </form>
+        <!-- <button>Search</button> -->
+
+    </div>
+
+
+    
+    <!-- <div class="allJob"> -->
+
+        <!-- <p th:if="${#lists.isEmpty(jobsOnSearch)}">No Job Found</p> -->
+
+        <div class="viewAlljob" th:each="job:${jobsOnSearch}">
+
+            <!-- <p th:if="${#lists.isEmpty(jobsOnSearch)}">No Job Found</p> -->
+
+            <h3 th:text="${job.title}" class="Jobtitle"></h3>
+
+            <span th:text="${job.companyName}" class="companyName"></span>
+            <span th:text="${job.location}"></span>
+
+            <span th:text="${job.salary}" style="margin-left: 20px "></span><br>
+
+            <h4 th:text="${job.skillsRequired}"></h4>
+
+        </div>
+    <!-- </div> -->
+
+    <div class="features">
+
+        <div class="feature-card" style="margin-left: 40px;">
+            <img th:src="@{/images/home.png}" alt="remote" class="image">
+            <span class="feature-card-span">Remote</span>
+            <img th:src="@{/images/right-arrow.png}" alt="arrow" class="arrow" style="margin-left: 35px;">
+        </div>
+
+        <div class="feature-card">
+            <img src="/images/company.png" alt="MNC" class="image">
+            <span class="feature-card-span">MNC</span>
+            <img src="/images/right-arrow.png" alt="arrow" class="arrow" style="margin-left: 60px;">
+        </div>
+
+        <div class="feature-card">
+            <img src="https://cdn-icons-png.flaticon.com/128/17365/17365593.png" alt="Analysis" class="image">
+            <span class="feature-card-span">Data Sci...</span>
+            <img src="/images/right-arrow.png" alt="arrow" class="arrow">
+        </div>
+
+        <div class="feature-card">
+            <img src="https://cdn-icons-png.flaticon.com/128/15368/15368554.png" alt="Analysis" class="image">
+            <span class="feature-card-span">Engineeri..</span>
+            <img src="/images/right-arrow.png" alt="arrow" class="arrow">
+        </div>
+
+        <div class="feature-card" style="margin-left: 40px;">
+            <img src="/images/project-launch.png" alt="Analysis" class="image">
+            <span class="feature-card-span">Startups</span>
+            <img src="/images/right-arrow.png" alt="arrow" class="arrow" style="margin-left: 30px;">
+        </div>
+
+        <div class="feature-card">
+            <img src="https://cdn-icons-png.flaticon.com/128/16781/16781218.png" alt="Analysis" class="image">
+            <span class="feature-card-span">Freshers</span>
+            <img src="/images/right-arrow.png" alt="arrow" class="arrow" style="margin-left: 20px;">
+        </div>
+
+        <div class="feature-card">
+            <img src="https://cdn-icons-png.flaticon.com/128/1443/1443000.png" alt="Analysis" class="image">
+            <span class="feature-card-span">Project Ma..</span>
+            <img src="/images/right-arrow.png" alt="arrow" class="arrow">
+        </div>
+
+        <div class="feature-card">
+            <img src="https://cdn-icons-png.flaticon.com/128/15541/15541803.png" alt="Analysis" class="image">
+            <span class="feature-card-span">HR</span>
+            <img src="/images/right-arrow.png" alt="arrow" class="arrow" style="margin-left: 80px;">
+        </div>
+    </div>
+
+    <h4 class="top-company-hiring" id="top-company">Top companies hiring now</h4>
+
+    <div class="top-company">
+
+        <!-- <h4 class="top-company-hiring">Top companies hiring now</h4> -->
+        <div class="top-company-card">
+            <span>MNCs</span>
+            <img src="/images/right-arrow.png" alt="arrow" class="arrow-icon">
+            <h4 class="top-company-tag">2.2k+ are hiring actively</h4><br>
+            <img src="https://cdn-icons-png.flaticon.com/128/882/882727.png" alt="IBM" class="top-company-icon">
+            <img src="https://cdn-icons-png.flaticon.com/128/2702/2702602.png" alt="Google" class="top-company-icon">
+            <img src="https://cdn-icons-png.flaticon.com/128/882/882748.png" alt="acer" class="top-company-icon">
+            <img src="https://cdn-icons-png.flaticon.com/128/732/732221.png" alt="microsoft" class="top-company-icon">
+        </div>
+
+        <div class="top-company-card">
+            <span>Internet</span>
+            <img src="/images/right-arrow.png" alt="arrow" class="arrow-icon">
+            <h4 class="top-company-tag">254 are hiring actively</h4><br>
+            <img src="https://cdn-icons-png.flaticon.com/128/6124/6124988.png" alt="Yahoo" class="top-company-icon">
+            <img src="https://cdn-icons-png.flaticon.com/128/10096/10096351.png" alt="amazon" class="top-company-icon">
+            <img src="https://cdn-icons-png.flaticon.com/128/145/145802.png" alt="facebook" class="top-company-icon">
+            <img src="https://cdn-icons-png.flaticon.com/128/5969/5969299.png" alt="tencent" class="top-company-icon">
+        </div>
+
+        <div class="top-company-card">
+            <span>Manufacturing</span>
+            <img src="/images/right-arrow.png" alt="arrow" class="arrow-icon">
+            <h4 class="top-company-tag">1.1k+ are hiring actively</h4><br>
+            <img src="https://www.clipartmax.com/png/middle/35-350637_godrej-logo.png" alt="godrej"
+                class="top-company-icon">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrzrnrfKxu15xZElof6oUkBJYAES0S8VtvmA&s"
+                alt="amazon" class="top-company-icon">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVfTSEgAJMQfItAPgWrbJQNQLL1Ad2i65PJg&s"
+                alt="facebook" class="top-company-icon">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMKtpfkKH2d1HBz_J_5z0nzId2aPYiMntcHA&s"
+                alt="tencent" class="top-company-icon">
+        </div>
+
+        <div class="top-company-card">
+            <span>Production based compan..</span>
+            <img src="/images/right-arrow.png" alt="arrow" class="arrow-icon">
+            <h4 class="top-company-tag">1.1k+ are hiring actively</h4><br>
+            <img src="https://cdn-icons-png.flaticon.com/128/5968/5968914.png" alt="godrej" class="top-company-icon">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzV4cXMhZAMJHftWja1KkJv8RFT_KOkZj_Uw&s"
+                alt="amazon" class="top-company-icon">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Apple_logo_grey.svg/960px-Apple_logo_grey.svg.png"
+                alt="facebook" class="top-company-icon">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRmoLzF1FA_rPgBLwohs989O_z-b6YCETUmg&s"
+                alt="tencent" class="top-company-icon">
+        </div>
+    </div>
+
+
+    <div class="allJob">
+
+        <div class="viewAll" th:each="job:${job}">
+
+            <h3 th:text="${job.title}" class="Jobtitle"></h3>
+
+            <span th:text="${job.companyName}" class="companyName"></span>
+            <span th:text="${job.location}"></span>
+
+            <span th:text="${job.salary}" style="margin-left: 20px "></span><br>
+
+            <h4 th:text="${job.skillsRequired}"></h4>
+
+        </div>
+    </div>
+
+
+    <br><br>
+
+    <div class="domain" id="domain">
+        <div class="skill">
+            <div class="specific">
+                <span>
+                    Data Science
+                </span>
+            </div>
+            <div class="specific">
+                <span>
+                    Full Stack Dev...
+                </span>
+            </div>
+            <div class="specific">
+                <span>
+                    Frontend Dev...
+                </span>
+            </div>
+            <div class="specific">
+                <span>
+                    DevOps Eng..
+                </span>
+            </div>
+            <div class="specific">
+                <span>
+                    Mobile/App Dev...
+                </span>
+            </div>
+            <div class="specific">
+                <span>
+                    Technical Lead
+                </span>
+            </div>
+            <div class="specific">
+                <span>
+                    Cyber Security
+                </span>
+            </div>
+            <div class="specific">
+                <span>
+                    AI/ML Eng..
+                </span>
+            </div>
+
+            <div class="specific">
+                <span>
+                    Research Analyst
+                </span>
+            </div>
+            <div class="specific">
+                <span>
+                    UI/UX Designer
+                </span>
+            </div>
+            <div class="specific">
+                <span>
+                    Product Manager
+                </span>
+            </div>
+            <div class="specific">
+                <span>
+                    Backend Dev...
+                </span>
+            </div>
+        </div>
+        <img src="https://thumbs.dreamstime.com/b/d-rendering-cartoon-man-magnifier-looking-job-character-holding-magnifying-glass-purple-background-searching-277182029.jpg"
+            alt="">
+    </div>
+
+    <div class="about" id="about">
+        <!-- <div class="about image">
+            <img src="https://cdn-icons-png.flaticon.com/128/16649/16649214.png" alt="about us" class="about-heading">
+        </div> -->
+
+        <div class="about-main-part">
+            <!-- <h1 class="about-heading">About Us</h1> -->
+
+            <img src="https://cdn-icons-png.flaticon.com/128/16649/16649214.png" alt="about us" class="about-heading"
+                style="display: block; margin-left: auto; margin-right: auto;">
+
+            <!-- <p class="about-content">Recruitify is your dedicated employment recruiter, specializing in connecting talented individuals with top-notch job opportunities. Our mission is to streamline the recruitment process, making it efficient for both job seekers and employers. With a focus on professionalism and personalized service, we aim to create meaningful employment matches that benefit both parties.</p> -->
+
+        </div>
+
+        <div style="display: flex;">
+            <img src="https://cdn-icons-png.flaticon.com/128/9474/9474482.png" alt="" height="250px" width="240px">
+            <span
+                style="text-align: center; margin-top: 40px;margin-left: 20px;margin-right: 10px; font-size: 25px; color: var(--text-muted);">Recruitify
+                is your dedicated employment recruiter, specializing in connecting talented individuals with top-notch
+                job opportunities. Our mission is to streamline the recruitment process, making it efficient for both
+                job seekers and employers. With a focus on professionalism and personalized service, we aim to create
+                meaningful employment matches that benefit both parties.</span>
+        </div>
+    </div>
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-section">
+                <h3>Recruitify</h3>
+                <p>Your trusted job portal connecting talented candidates with top recruiters across India.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>For Candidates</h4>
+                <a th:href="@{/login}">Browse Jobs</a>
+                <a th:href="@{/login}">Career Advice</a>
+                <a th:href="@{/login}">Upload Resume</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>For Recruiters</h4>
+                <a th:href="@{/login}">Post a Job</a>
+                <a th:href="@{/login}">Search Candidates</a>
+                <a th:href="@{/login}">Recruiter Dashboard</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: support@recruitify.com</p>
+                <p>Phone: +91 9876543210</p>
+                <p>India</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Recruitify Job Portal | All Rights Reserved</p>
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>

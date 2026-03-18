@@ -1,0 +1,259 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form th:action="@{/Recruiter/updatedJob}" method="post" th:object="${updatejob}">
+
+        <input type="hidden" th:field="*{jobId}"><br>
+
+        <label for="">Title</label>
+        <input type="text" th:field="*{title}"><br>
+        <label for="">Job Description</label>
+        <input type="text" th:field="*{job_description}"><br>
+        <label for="">location</label>
+        <input type="text" th:field="*{location}"><br>
+        <label for="">category</label>
+        <input type="text" th:field="*{category}"><br>
+        <label for="">salary</label>
+        <input type="number" th:field="*{salary}"><br>
+        <label for="">companyName</label>
+        <input type="hidden" th:field="*{companyName}"><br>
+        <label for="">contact</label>
+        <input type="number" th:field="*{contact}"><br>
+        <label for="">experience_required</label>
+        <input type="number" th:field="*{experience_required}"><br>
+
+        <label for="">skillsRequired</label>
+        <input type="text" th:field="*{skillsRequired}"><br>
+        <label for="">qualification</label>
+        <input type="text" th:field="*{qualification}"><br>
+
+        <input type="hidden" th:field="*{recruiterId}"><br>
+
+
+<button type="submit"> Update</button>
+
+    </form>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Update Job</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#eef2f3,#dfe9f3);
+min-height:100vh;
+}
+
+/* HEADER */
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 60px;
+background:linear-gradient(135deg,#1f4e79,#4db6ac);
+color:white;
+box-shadow:0 4px 20px rgba(0,0,0,0.15);
+}
+
+.logo{
+font-size:24px;
+font-weight:600;
+}
+
+/* CONTAINER */
+
+.container{
+max-width:900px;
+margin:auto;
+padding:40px 20px;
+}
+
+/* FORM CARD */
+
+.form-card{
+background:white;
+padding:35px;
+border-radius:14px;
+box-shadow:0 15px 35px rgba(0,0,0,0.1);
+}
+
+.form-card h1{
+margin-bottom:25px;
+color:#333;
+text-align:center;
+}
+
+/* GRID LAYOUT */
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.full{
+grid-column:1/-1;
+}
+
+/* LABEL */
+
+label{
+display:block;
+margin-bottom:6px;
+font-weight:500;
+color:#444;
+}
+
+/* INPUTS */
+
+input{
+width:100%;
+padding:10px;
+border-radius:8px;
+border:1px solid #ccc;
+font-size:14px;
+transition:0.2s;
+}
+
+input:focus{
+outline:none;
+border-color:#4db6ac;
+box-shadow:0 0 4px rgba(77,182,172,0.4);
+}
+
+/* BUTTON */
+
+.update-btn{
+margin-top:25px;
+padding:12px;
+width:100%;
+border:none;
+border-radius:8px;
+background:linear-gradient(135deg,#1f4e79,#4db6ac);
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.update-btn:hover{
+opacity:0.9;
+transform:translateY(-2px);
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+.form-grid{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<div class="header">
+<div class="logo">👜 JobHub Recruiter</div>
+</div>
+
+<div class="container">
+
+<div class="form-card">
+
+<h1>Update Job Details</h1>
+
+<form th:action="@{/Recruiter/updatedJob}" method="post" th:object="${updatejob}">
+
+<input type="hidden" th:field="*{jobId}">
+<input type="hidden" th:field="*{companyName}">
+<input type="hidden" th:field="*{recruiterId}">
+
+<div class="form-grid">
+
+<div>
+<label>Title</label>
+<input type="text" th:field="*{title}">
+</div>
+
+<div>
+<label>Location</label>
+<input type="text" th:field="*{location}">
+</div>
+
+<div class="full">
+<label>Job Description</label>
+<input type="text" th:field="*{job_description}">
+</div>
+
+<div>
+<label>Category</label>
+<input type="text" th:field="*{category}">
+</div>
+
+<div>
+<label>Salary</label>
+<input type="number" th:field="*{salary}">
+</div>
+
+<div>
+<label>Contact</label>
+<input type="number" th:field="*{contact}">
+</div>
+
+<div>
+<label>Experience Required</label>
+<input type="number" th:field="*{experience_required}">
+</div>
+
+<div>
+<label>Skills Required</label>
+<input type="text" th:field="*{skillsRequired}">
+</div>
+
+<div>
+<label>Qualification</label>
+<input type="text" th:field="*{qualification}">
+</div>
+
+</div>
+
+<button type="submit" class="update-btn">Update Job</button>
+
+</form>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

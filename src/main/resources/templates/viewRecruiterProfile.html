@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuiter Profile</title>
+
+
+    <style>
+        *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+    padding:40px;
+}
+
+/* main wrapper */
+
+.main{
+    display:flex;
+    justify-content:center;
+}
+
+/* profile card */
+
+.container{
+    width:850px;
+    background:white;
+    padding:40px;
+    border-radius:10px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+/* profile image */
+
+.container img{
+    display:block;
+    margin:0 auto 30px auto;
+    border-radius:50%;
+    border:5px solid #e6e6e6;
+}
+
+/* headings */
+
+.container h2{
+    text-align:center;
+    margin-bottom:30px;
+    color:#333;
+}
+
+/* profile rows */
+
+.container span{
+    display:inline-block;
+    width:220px;
+    font-weight:600;
+    color:#555;
+    margin-top:12px;
+}
+
+/* values */
+
+.container h3 , h2{
+    display:inline-block;
+    font-weight:400;
+    color:#333;
+    margin-top:12px;
+}
+
+/* divider spacing */
+
+.container span,
+.container h3{
+    border-bottom:1px solid #eee;
+    padding-bottom:8px;
+    width:48%;
+}
+
+/* responsive */
+
+@media(max-width:768px){
+
+.container{
+    width:100%;
+}
+
+.container span,
+.container h3{
+    width:100%;
+    display:block;
+}
+
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="main">
+
+        <!-- <img th:src="@{'/profilePic' + ${recruiterProfile.profilepic}}" alt="" height="100px" width="100px"> -->
+
+        <div class="container" th:each="recruiter:${recruiterProfile}">
+
+            <img th:src="@{'/profilePic/' + ${recruiter.profilepic}}" alt="" height="100px" width="100px">
+
+            <div class="profile-info">
+                <span>Name : </span>
+                <h2 th:text="${recruiter.name}"></h2>
+                <span>Email : </span>
+                <h3 th:text="${recruiter.email}"></h3>
+                <span>Verification Status : </span>
+                <h3 th:text="${recruiter.verify}"></h3>
+                <span>Contact : </span>
+                <h3 th:text="${recruiter.contact}"></h3>
+                <span>Age : </span>
+                <h3 th:text="${recruiter.age}"></h3>
+                <span>Skills : </span>
+                <h3 th:text="${recruiter.skills}"></h3>
+                <span>Education : </span>
+                <h3 th:text="${recruiter.education}"></h3>
+                <span>About : </span>
+                <h3 th:text="${recruiter.about}"></h3>
+                <span>Position : </span>
+                <h3 th:text="${recruiter.position}"></h3>
+                <span>Experience : </span>
+                <h3 th:text="${recruiter.experience}"></h3>
+                <span>Company Name : </span>
+                <h3 th:text="${recruiter.companyName}"></h3>
+                <span>Company Address : </span>
+                <h3 th:text="${recruiter.companyAddress}"></h3>
+                <span>City : </span>
+                <h3 th:text="${recruiter.city}"></h3>
+                <span>State : </span>
+                <h3 th:text="${recruiter.state}"></h3>
+                <span>Country : </span>
+                <h3 th:text="${recruiter.country}"></h3>
+                <span>Account Created Date : </span>
+                <h3 th:text="${recruiter.createdDate}"></h3>
+
+
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
