@@ -93,7 +93,7 @@ public class CandidateController {
 
         model.addAttribute("appliedJobIds", appliedJobIds);
 
-        return "candidateHome_backup";
+        return "candidateHome";
     }
 
     @GetMapping("/Candidate/search")
@@ -107,7 +107,7 @@ public class CandidateController {
                         keyword, keyword, keyword);
         model.addAttribute("jobs", jobs);
 
-        return "candidateHome_backup";
+        return "candidateHome";
     }
 
     @GetMapping("/Candidate/UpdateProfile")

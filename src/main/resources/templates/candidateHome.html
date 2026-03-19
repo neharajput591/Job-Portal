@@ -4,449 +4,260 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Candidate Home - Recruitify</title>
+    <title>Candidate Dashboard | Recruitify</title>
 
-    <!-- icon cdn -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icon CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <!-- AOS CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
 
-    <!-- css -->
+    <!-- Global Styles -->
     <link rel="stylesheet" th:href="@{/css/style.css}">
-
-    <style>
-        /* Specific tweaks for candidate home that bridge old and new style */
-        .header-nav-custom {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .header-nav-custom .profile {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-decoration: none;
-        }
-
-        .header-nav-custom .profile-img {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--primary-color);
-            transition: 0.3s;
-        }
-        
-        .header-nav-custom .profile-img:hover {
-            transform: scale(1.1);
-        }
-
-        .header-nav-custom .profile-name {
-            color: var(--white);
-            font-size: 14px;
-            font-weight: 600;
-            margin: 0;
-            text-decoration: none;
-        }
-
-        .welcome-section {
-            padding: 50px 20px;
-            text-align: center;
-            color: #333;
-        }
-
-        .welcome-section h1 {
-            font-size: 32px;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        .welcome-section p {
-            color: #666;
-            font-size: 16px;
-        }
-
-        .custom-searchBox {
-            max-width: 600px;
-            margin: 0 auto 50px auto;
-            position: relative;
-        }
-
-        .custom-searchBox input {
-            width: 100%;
-            padding: 15px 20px;
-            border-radius: 30px;
-            border: 1px solid #ddd;
-            font-size: 15px;
-            outline: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-        }
-
-        .custom-searchBox input:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 4px 15px rgba(68, 182, 120, 0.2);
-        }
-
-        .custom-searchBox button {
-            position: absolute;
-            right: 5px;
-            top: 5px;
-            bottom: 5px;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 25px;
-            padding: 0 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .custom-searchBox button:hover {
-            background: #3e8e41;
-        }
-
-        /* Adjust Jobs Container to match new theme */
-        .jobContainer {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            padding: 0 20px 60px 20px;
-            max-width: 1200px;
-            margin: auto;
-            justify-content: center;
-        }
-
-        .allJob {
-            background: white;
-            width: calc(33.333% - 20px);
-            min-width: 300px;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            border: 1px solid #f0f0f0;
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .allJob:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .allJob .Jobtitle {
-            font-size: 19px;
-            font-weight: 700;
-            color: #222;
-            margin-bottom: 12px;
-            padding-right: 80px; /* space for salary */
-        }
-
-        .allJob .companyName, .allJob .location {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .allJob .salary {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(68, 182, 120, 0.1);
-            color: var(--primary-color);
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .allJob .skills {
-            margin-top: auto;
-            padding-top: 15px;
-        }
-
-        .allJob .skills .tag {
-            display: inline-block;
-            background: #f4f6f8;
-            padding: 5px 12px;
-            border-radius: 6px;
-            font-size: 13px;
-            color: #555;
-            margin-bottom: 15px;
-        }
-
-        .allJob .applyBtn {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            background: var(--primary-color);
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-            text-align: center;
-        }
-        
-        .allJob .applyBtn a {
-            color: white;
-            text-decoration: none;
-            display: block;
-        }
-
-        .allJob .applyBtn:hover {
-            background: #3e8e41;
-        }
-
-        .allJob .applied-badge {
-            display: block;
-            text-align: center;
-            padding: 12px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #155724;
-            background-color: #d4edda;
-            border: 1px solid #c3e6cb;
-            border-radius: 8px;
-        }
-
-        .allJob .note {
-            font-size: 12px;
-            color: #999;
-            margin-top: 10px;
-            text-align: center;
-            line-height: 1.4;
-        }
-
-        /* Platform Grid match */
-        .platformGrid {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            max-width: 1200px;
-            margin: auto;
-            justify-content: center;
-        }
-
-    </style>
+    
+    <!-- Page Specific Styles -->
+    <link rel="stylesheet" th:href="@{/css/candidateHomeStyle.css?v=2.3}">
 </head>
 
 <body>
 
-    <header id="mainHeader" style="background: black;">
-        <div class="container">
-            <div class="logo">
-                <i class="fa-solid fa-users-viewfinder"></i>Recruitify
-            </div>
+    <!-- Header -->
+    <header id="mainHeader" class="page-header">
+        <div class="logo">
+            <i class="fa-solid fa-users-viewfinder"></i> Recruitify
+        </div>
+        
+        <div class="header-nav">
+            <a th:href="@{/Candidate/ApplicationUpdate}" class="commonBtn" style="text-decoration: none; padding: 10px 20px; font-size: 14px;">
+                <i class="fa-solid fa-bell"></i> Application Updates
+            </a>
             
-            <div class="header-nav-custom">
-                <a th:href="@{/Candidate/ApplicationUpdate}"><button class="commonBtn" style="font-size: 14px; padding: 8px 15px;">Application Update</button></a>
-                
-                <a th:href="@{/Candidate/UpdateProfile}" class="profile">
-                    <img th:src="@{'/profilePic/' + ${profilePic}}" alt="Profile Pic" class="profile-img">
-                    <span th:text="${name}" class="profile-name"></span>
-                </a>
-                
-                <a th:href="@{/}"><i class="fa-solid fa-right-from-bracket" style="color: white; font-size: 18px; margin-left: 10px;" title="Logout"></i></a>
-            </div>
+            <a th:href="@{/Candidate/UpdateProfile}" class="profile-link">
+                <img th:src="@{'/profilePic/' + ${profilePic}}" alt="Profile" class="nav-profile-pic">
+                <span th:text="${name}" class="profile-name" style="font-weight: 600;"></span>
+            </a>
             
-            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+            <a th:href="@{/}" title="Logout">
+                <i class="fa-solid fa-right-from-bracket" style="color: white; font-size: 20px;"></i>
+            </a>
         </div>
     </header>
 
-    <div class="welcome-section" data-aos="fade-down">
-        <h1>Hello <span th:text="${name}"></span> 👋</h1>
-        <p>Welcome back! Ready to explore new career opportunities?</p>
-    </div>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1>Welcome Back, <span th:text="${name}">Candidate</span>! 👋</h1>
+        <p>Your one-stop destination to manage applications and discover your next big career move.</p>
+    </section>
 
-    <!-- Search Box -->
-    <div class="container" data-aos="zoom-in" data-aos-delay="100">
-        <form th:action="@{/Candidate/search}" method="get" class="custom-searchBox">
-            <input type="text" name="keyword" placeholder="Search jobs, skills or company...">
-            <button type="submit">Search</button>
+    <!-- Search Section -->
+    <div class="search-container">
+        <form th:action="@{/Candidate/search}" method="get" class="search-box">
+            <input type="text" name="keyword" placeholder="Search by job title, skills, or company name...">
+            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i> Search Jobs</button>
         </form>
     </div>
 
-    <!-- Counter Section -->
-    <section>
-        <div class="counter-section">
-            <div class="counter-box" data-aos="fade-right" data-aos-delay="100">
-                <div class="counter-number" data-target="500">0</div>
-                <div class="separator"></div>
-                <div class="counter-text">Active Job Listings</div>
-            </div>
-
-            <div class="counter-box" data-aos="fade-down" data-aos-delay="200" style="background: var(--light-green);">
-                <div class="counter-number" data-target="200">0</div>
-                <div class="separator"></div>
-                <div class="counter-text">Verified Recruiters</div>
-            </div>
-
-            <div class="counter-box" data-aos="fade-up" data-aos-delay="300">
-                <div class="counter-number" data-target="3000">0</div>
-                <div class="separator"></div>
-                <div class="counter-text">Registered Candidates</div>
-            </div>
-
-            <div class="counter-box" data-aos="fade-left" data-aos-delay="400" style="background: var(--light-green);">
-                <div class="counter-number" data-target="150">0</div>
-                <div class="separator"></div>
-                <div class="counter-text">Successful Placements</div>
-            </div>
+    <!-- Stats Section -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <span class="stat-number" data-target="500">0</span>
+            <span class="stat-label">Active Listings</span>
         </div>
-    </section>
-
-    <!-- Recommended Jobs -->
-    <h2 class="heading" data-aos="fade-up">Recommended Jobs</h2>
-    
-    <div class="jobContainer">
-
-        <div class="allJob" th:each="job:${jobs}" th:attr="data-aos=${iterStat.index % 2 == 0 ? 'fade-right' : 'fade-left'}, data-aos-delay=${iterStat.index * 100}">
-
-            <span class="salary" th:text="${job.salary}"></span>
-
-            <a th:href="@{/job/jobdetail/{jobId}(jobId=${job.jobId})}" style="text-decoration:none">
-                <h3 th:text="${job.title}" class="Jobtitle"></h3>
-
-                <div>
-                    <div class="companyName"><i class="fa-solid fa-building"></i> <span th:text="${job.companyName}"></span></div>
-                    <div class="location"><i class="fa-solid fa-location-dot"></i> <span th:text="${job.location}"></span></div>
-                </div>
-
-                <div class="skills">
-                    <span class="tag" th:text="${job.skillsRequired}"></span>
-                </div>
-            </a>
-
-            <!-- Apply Buttons -->
-            <button class="applyBtn" th:if="${!appliedJobIds.contains(job.jobId)}">
-                <a th:href="@{/job/applynow/{jobId}(jobId=${job.jobId})}" onclick="applicationSuccess()">Apply Now</a>
-            </button>
-
-            <span class="applied-badge" th:if="${appliedJobIds.contains(job.jobId)}">
-                <i class="fa-solid fa-check"></i> Applied
-            </span>
-
-            <p class="note">
-                By clicking "Apply Now", your application will be shared directly with the recruiter.
-            </p>
-
+        <div class="stat-card">
+            <span class="stat-number" data-target="200">0</span>
+            <span class="stat-label">Recruiters</span>
         </div>
-
+        <div class="stat-card">
+            <span class="stat-number" data-target="3000">0</span>
+            <span class="stat-label">Candidates</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number" data-target="150">0</span>
+            <span class="stat-label">Hired Monthly</span>
+        </div>
     </div>
 
-    <!-- Platform Features -->
-    <section class="featuredSection" style="background: #fff;">
-        <h2 class="heading" data-aos="zoom-in">Why Use Our Job Portal?</h2>
+    <!-- Recommended Jobs Section -->
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Recommended For You</h2>
         
-        <div class="platformGrid">
-
-            <div class="job-card" data-aos="flip-left" data-aos-delay="100" style="width: calc(25% - 20px); min-width: 250px; flex-direction: column; text-align: center; align-items: center;">
-                <div class="icon-box" style="margin-bottom: 15px;">
-                    <i class="fa-solid fa-user-check" style="font-size: 24px; color: white;"></i>
+            <div class="job-grid">
+            <!-- Job Card -->
+            <div class="job-card" th:each="job, iterStat : ${jobs}" th:attr="data-aos=${iterStat.index % 2 == 0 ? 'fade-right' : 'fade-left'}, data-aos-delay=${iterStat.index * 100}">
+                <div class="job-card-header">
+                    <h3 th:text="${job.title}" class="job-title"></h3>
+                    <span class="salary-tag" th:text="${job.salary}"></span>
                 </div>
-                <h3 style="font-size: 18px; margin-bottom: 10px; color: #333;">Verified Recruiters</h3>
-                <p style="font-size: 14px; color: #666; line-height: 1.5;">All recruiters go through a verification process so you can apply confidently.</p>
-            </div>
 
-            <div class="job-card" data-aos="flip-left" data-aos-delay="200" style="width: calc(25% - 20px); min-width: 250px; flex-direction: column; text-align: center; align-items: center;">
-                <div class="icon-box" style="margin-bottom: 15px;">
-                    <i class="fa-solid fa-bolt" style="font-size: 24px; color: white;"></i>
+                <div class="job-meta">
+                    <span><i class="fa-solid fa-building"></i> <span th:text="${job.companyName}"></span></span>
+                    <span><i class="fa-solid fa-location-dot"></i> <span th:text="${job.location}"></span></span>
                 </div>
-                <h3 style="font-size: 18px; margin-bottom: 10px; color: #333;">Quick Applications</h3>
-                <p style="font-size: 14px; color: #666; line-height: 1.5;">Apply for jobs instantly using your saved profile without filling forms.</p>
-            </div>
 
-            <div class="job-card" data-aos="flip-left" data-aos-delay="300" style="width: calc(25% - 20px); min-width: 250px; flex-direction: column; text-align: center; align-items: center;">
-                <div class="icon-box" style="margin-bottom: 15px;">
-                    <i class="fa-solid fa-envelope-open-text" style="font-size: 24px; color: white;"></i>
+                <div class="skill-tags">
+                    <span class="skill-tag" th:text="${job.skillsRequired}"></span>
                 </div>
-                <h3 style="font-size: 18px; margin-bottom: 10px; color: #333;">Direct Contact</h3>
-                <p style="font-size: 14px; color: #666; line-height: 1.5;">Your application is sent directly to recruiters who are actively hiring.</p>
-            </div>
 
-            <div class="job-card" data-aos="flip-left" data-aos-delay="400" style="width: calc(25% - 20px); min-width: 250px; flex-direction: column; text-align: center; align-items: center;">
-                <div class="icon-box" style="margin-bottom: 15px;">
-                    <i class="fa-solid fa-chart-line" style="font-size: 24px; color: white;"></i>
+                <div class="job-card-actions">
+                    <a th:href="@{/job/jobdetail/{jobId}(jobId=${job.jobId})}" class="view-detail-btn">
+                        View Details
+                    </a>
+                    
+                    <a th:if="${!appliedJobIds.contains(job.jobId)}" 
+                       th:href="@{/job/applynow/{jobId}(jobId=${job.jobId})}" 
+                       class="apply-now-btn" 
+                       onclick="applicationSuccess()">
+                        Apply Now
+                    </a>
+
+                    <div th:if="${appliedJobIds.contains(job.jobId)}" class="status-badge-container">
+                        <span class="applied-status-badge">
+                            <i class="fa-solid fa-circle-check"></i> Applied Successfully
+                        </span>
+                    </div>
                 </div>
-                <h3 style="font-size: 18px; margin-bottom: 10px; color: #333;">Application Tracking</h3>
-                <p style="font-size: 14px; color: #666; line-height: 1.5;">Track the status of all your applications from your dashboard easily.</p>
             </div>
+        </div>
+    </div>
 
+    <!-- Features Section -->
+    <section style="background: rgba(255,255,255,0.4); padding: 80px 0;">
+        <div class="container">
+            <h2 class="section-title" data-aos="zoom-in">Why Choose Recruitify?</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>Verified Jobs</h3>
+                    <p>Every job listing is manually verified to ensure high-quality opportunities for our candidates.</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <h3>Fast Response</h3>
+                    <p>Our direct-to-recruiter system ensures your application gets seen faster than traditional portals.</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon"><i class="fa-solid fa-user-gear"></i></div>
+                    <h3>Smart Matching</h3>
+                    <p>Our algorithms recommend jobs based on your skills and experience for a perfect career fit.</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <button id="backToTop">
+    <button id="backToTop" title="Go to top">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
-    <footer class="footer" id="footer" style="margin-top: 0;">
-        <div class="container">
-            <div class="column">
-                <div class="logo">
-                    <i class="fa-solid fa-users-viewfinder"></i>
-                    <span style="color: var(--primary-color);">Recruitify</span>
+
+    <footer class="footer-main">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo" style="margin-bottom: 20px;">
+                    <i class="fa-solid fa-users-viewfinder"></i> Recruitify
                 </div>
-                <br>
-                <p>Recruitify helps candidates discover verified job opportunities and connect directly with recruiters.</p>
-
-                <div class="social-icons">
-                    <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
-                    <a href="#"><i class="fa-brands fa-square-google-plus"></i></a>
-                    <a href="#"><i class="fa-brands fa-square-x-twitter"></i></a>
-                    <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+                <p style="color: var(--primary-color);">Join thousands of professionals finding their dream careers. We connect the best talent with top companies globally.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
                 </div>
-            </div>
-
-            <div class="column">
-                <h3>Candidate Dashboard</h3>
-                <a th:href="@{/candidate_home}"><i class="fa-solid fa-angles-right"></i> Home</a>
-                <a th:href="@{/Candidate/UpdateProfile}"><i class="fa-solid fa-angles-right"></i> Update Profile</a>
-                <a th:href="@{/Candidate/ApplicationUpdate}"><i class="fa-solid fa-angles-right"></i> Application Status</a>
-                <a th:href="@{/}"><i class="fa-solid fa-angles-right"></i> Logout</a>
-            </div>
-
-            <div class="column">
-                <h3>Quick Info</h3>
-                <a href="#"><i class="fa-solid fa-angles-right"></i> Browse Hundreds of Jobs</a>
-                <a href="#"><i class="fa-solid fa-angles-right"></i> Apply Directly to Recruiters</a>
-                <a href="#"><i class="fa-solid fa-angles-right"></i> Track Your Applications Easily</a>
             </div>
             
-             <div class="column">
-                <h3>Contact</h3>
-                <p style="margin-bottom: 8px;"><i class="fa-solid fa-envelope" style="color: var(--primary-color);"></i> support@recruitify.com</p>
-                <p style="margin-bottom: 8px;"><i class="fa-solid fa-phone" style="color: var(--primary-color);"></i> +91 9876543210</p>
-                <p><i class="fa-solid fa-location-dot" style="color: var(--primary-color);"></i> India</p>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a th:href="@{/candidate_home}">Dashboard</a></li>
+                    <li><a th:href="@{/Candidate/UpdateProfile}">My Profile</a></li>
+                    <li><a th:href="@{/Candidate/ApplicationUpdate}">Applications</a></li>
+                    <li><a th:href="@{/}">Sign Out</a></li>
+                </ul>
             </div>
-
+            
+            <div class="footer-col">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p><i class="fa-solid fa-envelope" style="color: var(--primary-color); margin-right: 10px;"></i> support@recruitify.com</p>
+                <p><i class="fa-solid fa-phone" style="color: var(--primary-color); margin-right: 10px;"></i> +1 (234) 567-890</p>
+                <p><i class="fa-solid fa-location-dot" style="color: var(--primary-color); margin-right: 10px;"></i> New York, NY 10001</p>
+            </div>
         </div>
-
-        <div class="copy-right">
-            Copyright @ 2026 All Rights Reserved Recruitify.
+        
+        <div class="footer-bg"></div>
+        <div class="footer-bottom">
+            &copy; 2026 Recruitify Inc. All rights reserved. Made with <i class="fa-solid fa-heart" style="color: #e74c3c;"></i> for candidates.
         </div>
     </footer>
 
-    <!-- AOS JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-
-    <!-- custom js -->
-    <script th:src="@{/js/custom.js}"></script>
-
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
+        // Init AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Navbar Scroll Effect
+        window.onscroll = () => {
+            const header = document.getElementById("mainHeader");
+            if (window.scrollY > 50) {
+                header.classList.add("fixed");
+            } else {
+                header.classList.remove("fixed");
+            }
+
+            // Back to top
+            const backToTop = document.getElementById("backToTop");
+            if (window.scrollY > 300) {
+                backToTop.style.display = "flex";
+            } else {
+                backToTop.style.display = "none";
+            }
+        };
+
+        document.getElementById("backToTop").onclick = () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        };
+
+        // Counter Animation
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 200;
+        counters.forEach(counter => {
+            const animate = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const increment = target / speed;
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(animate, 1);
+                } else {
+                    counter.innerText = target + "+";
+                }
+            }
+            animate();
+        });
+
         function applicationSuccess() {
-            alert("Applied Successfully");
+            alert("Application Submitted Successfully! 🚀");
         }
     </script>
-
 </body>
 
 </html>

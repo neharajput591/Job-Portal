@@ -86,498 +86,196 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Profile</title>
+    <title>Update Profile | Recruitify</title>
 
-    <style>
-        /* *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Segoe UI, sans-serif;
-}
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icon CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-body{
-background:#f5f7fb;
-} */
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
 
-        /* HEADER */
-        /* 
-.header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 60px;
-background:linear-gradient(135deg,#1f4e79,#4db6ac);
-color:white;
-}
-
-.logo{
-display:flex;
-align-items:center;
-font-size:22px;
-font-weight:600;
-}
-
-.logo span{
-font-size:28px;
-margin-right:10px;
-} */
-
-        /* MAIN */
-
-        /* .container{
-max-width:900px;
-margin:auto;
-padding:40px 20px;
-} */
-
-        /* CARD */
-
-        /* .card{
-background:white;
-padding:35px;
-border-radius:12px;
-box-shadow:0 12px 30px rgba(0,0,0,0.1);
-margin-bottom:30px;
-} */
-
-        /* PROFILE IMAGE */
-
-        /* .profile-img{
-width:120px;
-height:120px;
-border-radius:50%;
-object-fit:cover;
-display:block;
-margin:auto;
-margin-bottom:20px;
-border:4px solid #4db6ac;
-} */
-
-        /* TITLE */
-
-        /* .title{
-text-align:center;
-margin-bottom:25px;
-color:#333;
-} */
-
-        /* FORM GRID */
-
-        /* .form-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-} */
-
-        /* INPUT GROUP */
-        /* 
-.input-group{
-display:flex;
-flex-direction:column;
-}
-
-.input-group label{
-font-size:14px;
-margin-bottom:5px;
-color:#555;
-}
-
-.input-group input{
-padding:10px;
-border-radius:8px;
-border:1px solid #ccc;
-font-size:14px;
-} */
-
-        /* FULL WIDTH */
-
-        /* .full{
-grid-column:1/3;
-} */
-
-        /* BUTTON */
-        /* 
-.btn{
-margin-top:20px;
-padding:12px;
-border:none;
-border-radius:25px;
-background:linear-gradient(90deg,#2ecc71,#27ae60);
-color:white;
-font-size:15px;
-font-weight:600;
-cursor:pointer;
-width:100%;
-}
-
-.btn:hover{
-opacity:0.9;
-} */
-
-        /* RESUME CARD */
-
-        /* .resume-card{
-text-align:center;
-} */
-
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #eef2f3, #dfe9f3);
-            min-height: 100vh;
-        }
-
-        /* HEADER */
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 60px;
-            background: linear-gradient(135deg, #1f4e79, #4db6ac);
-            color: white;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            font-size: 24px;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .logo span {
-            font-size: 30px;
-            margin-right: 12px;
-        }
-
-        /* MAIN CONTAINER */
-
-        .container {
-            max-width: 950px;
-            margin: auto;
-            padding: 50px 20px;
-        }
-
-        /* GLASS CARD */
-
-        .card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 18px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-            margin-bottom: 35px;
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.18);
-        }
-
-        /* PROFILE IMAGE */
-
-        .profile-img {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            object-fit: cover;
-            display: block;
-            margin: auto;
-            margin-bottom: 20px;
-            border: 5px solid #4db6ac;
-            box-shadow: 0 0 20px rgba(77, 182, 172, 0.5);
-            transition: 0.4s;
-        }
-
-        .profile-img:hover {
-            transform: scale(1.05);
-        }
-
-        /* TITLE */
-
-        .title {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #333;
-            font-size: 26px;
-            font-weight: 600;
-        }
-
-        /* GRID */
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 22px;
-        }
-
-        /* INPUT GROUP */
-
-        .input-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .input-group label {
-            font-size: 13px;
-            margin-bottom: 6px;
-            color: #555;
-            font-weight: 500;
-        }
-
-        .input-group input {
-            padding: 12px;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-            font-size: 14px;
-            transition: 0.3s;
-            background: #f9fafc;
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: #4db6ac;
-            box-shadow: 0 0 8px rgba(77, 182, 172, 0.3);
-            background: white;
-        }
-
-        /* FULL WIDTH */
-
-        .full {
-            grid-column: 1/3;
-        }
-
-        /* BUTTON */
-
-        .btn {
-            margin-top: 25px;
-            padding: 14px;
-            border: none;
-            border-radius: 30px;
-            background: linear-gradient(90deg, #2ecc71, #27ae60);
-            color: white;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            letter-spacing: 0.5px;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 18px rgba(46, 204, 113, 0.4);
-        }
-
-        /* RESUME CARD */
-
-        .resume-card {
-            text-align: center;
-        }
-
-        .resume-card input {
-            margin-top: 10px;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-        }
-
-        /* SMALL SCREENS */
-
-        @media(max-width:768px) {
-
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .full {
-                grid-column: 1;
-            }
-
-            .header {
-                padding: 15px 20px;
-            }
-
-        }
-    </style>
-
+    <!-- Global Styles -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    
+    <!-- Page Specific Styles -->
+    <link rel="stylesheet" th:href="@{/css/updateProfileStyle.css}">
 </head>
 
 <body>
 
-    <!-- HEADER -->
-
-    <div class="header">
-
+    <!-- Header (Recruitify Theme) -->
+    <header id="mainHeader" class="page-header">
         <div class="logo">
-            <span>👜</span> JobHub
+            <i class="fa-solid fa-users-viewfinder"></i> Recruitify
         </div>
-
-    </div>
+        <nav id="nav" class="auth-buttons">
+            <a th:href="@{/Candidate/candidateHome}" class="commonBtn" style="text-decoration: none;">
+                <i class="fa-solid fa-house-user"></i> Home
+            </a>
+        </nav>
+    </header>
 
     <div class="container">
 
-        <div class="card">
+        <!-- Update Profile Card -->
+        <div class="card" data-aos="fade-up">
+            
+            <div class="profile-img-container">
+                <img th:src="@{'/profilePic/' + ${candidate.profilepic}}" class="profile-img" alt="Profile Picture">
+            </div>
 
-            <img th:src="@{'/profilePic/' + ${candidate.profilepic}}" class="profile-img">
+            <h2 class="title" data-aos="zoom-in">Update Your Profile</h2>
 
-            <h2 class="title">Update Profile</h2>
-
-            <form th:action="@{/Candidate/candidate_profile12}" th:object="${candidate}" method="post"
-                enctype="multipart/form-data">
+            <form th:action="@{/Candidate/candidate_profile12}" th:object="${candidate}" method="post" enctype="multipart/form-data">
 
                 <input type="text" th:field="*{idUser}" hidden>
 
                 <div class="form-grid">
 
-                    <div class="input-group">
-                        <label>Email</label>
-                        <input type="email" th:field="*{email}">
+                    <div class="input-group" data-aos="fade-right">
+                        <label><i class="fa-solid fa-envelope"></i> Email Address</label>
+                        <input type="email" th:field="*{email}" placeholder="yourname@example.com">
                     </div>
 
-                    <div class="input-group">
-                        <label>Profile Photo</label>
+                    <div class="input-group" data-aos="fade-left">
+                        <label><i class="fa-solid fa-image"></i> Profile Photo</label>
                         <input type="file" name="pic">
                     </div>
 
-                    <div class="input-group">
-                        <label>Name</label>
-                        <input type="text" th:field="*{name}" required>
+                    <div class="input-group" data-aos="fade-right">
+                        <label><i class="fa-solid fa-user"></i> Full Name</label>
+                        <input type="text" th:field="*{name}" required placeholder="Enter your full name">
                     </div>
 
-                    <div class="input-group">
-                        <label>Age</label>
-                        <input type="number" th:field="*{age}">
+                    <div class="input-group" data-aos="fade-left">
+                        <label><i class="fa-solid fa-calendar-days"></i> Age</label>
+                        <input type="number" th:field="*{age}" placeholder="Your age">
                     </div>
 
-                    <div class="input-group">
-                        <label>Skills</label>
-                        <input type="text" th:field="*{skills}">
+                    <div class="input-group" data-aos="fade-right">
+                        <label><i class="fa-solid fa-gears"></i> Skills</label>
+                        <input type="text" th:field="*{skills}" placeholder="e.g. Java, Python, React">
                     </div>
 
-                    <div class="input-group">
-                        <label>City</label>
-                        <input type="text" th:field="*{city}">
+                    <div class="input-group" data-aos="fade-left">
+                        <label><i class="fa-solid fa-city"></i> City</label>
+                        <input type="text" th:field="*{city}" placeholder="Your city">
                     </div>
 
-                    <div class="input-group">
-                        <label>State</label>
-                        <input type="text" th:field="*{state}">
+                    <div class="input-group" data-aos="fade-right">
+                        <label><i class="fa-solid fa-map-location-dot"></i> State</label>
+                        <input type="text" th:field="*{state}" placeholder="Your state">
                     </div>
 
-                    <div class="input-group">
-                        <label>Country</label>
-                        <input type="text" th:field="*{country}">
+                    <div class="input-group" data-aos="fade-left">
+                        <label><i class="fa-solid fa-earth-americas"></i> Country</label>
+                        <input type="text" th:field="*{country}" placeholder="Your country">
                     </div>
 
-                    <div class="input-group">
-                        <label>Contact</label>
-                        <input type="number" th:field="*{contact}">
+                    <div class="input-group" data-aos="fade-right">
+                        <label><i class="fa-solid fa-phone"></i> Contact Number</label>
+                        <input type="number" th:field="*{contact}" placeholder="Your contact number">
                     </div>
 
-                    <div class="input-group">
-                        <label>Experience (Years)</label>
-                        <input type="number" th:field="*{experience}">
+                    <div class="input-group" data-aos="fade-left">
+                        <label><i class="fa-solid fa-briefcase"></i> Experience (Years)</label>
+                        <input type="number" th:field="*{experience}" placeholder="Total years of experience">
                     </div>
 
-                    <div class="input-group">
-                        <label>Company Name</label>
-                        <input type="text" th:field="*{companyName}">
+                    <div class="input-group" data-aos="fade-right">
+                        <label><i class="fa-solid fa-building"></i> Company Name</label>
+                        <input type="text" th:field="*{companyName}" placeholder="Your current/last company">
                     </div>
 
-                    <div class="input-group">
-                        <label>Education</label>
-                        <input type="text" th:field="*{education}">
+                    <div class="input-group" data-aos="fade-left">
+                        <label><i class="fa-solid fa-graduation-cap"></i> Education</label>
+                        <input type="text" th:field="*{education}" placeholder="Highest qualification">
                     </div>
 
-                    <div class="input-group full">
-                        <label>About</label>
-                        <input type="text" th:field="*{about}">
+                    <div class="input-group full" data-aos="fade-up">
+                        <label><i class="fa-solid fa-circle-info"></i> About You</label>
+                        <textarea th:field="*{about}" rows="4" placeholder="Tell us about yourself..."></textarea>
                     </div>
 
                 </div>
 
-                <button type="submit" class="btn" onclick="updateSuccess()">Save Profile</button>
+                <button type="submit" class="btn" onclick="updateSuccess()">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Save Profile Changes
+                </button>
 
+            </form>
+        </div>
+
+        <!-- Resume Upload Card -->
+        <div class="card resume-card" data-aos="fade-up">
+
+            <h2 data-aos="zoom-in"><i class="fa-solid fa-file-pdf"></i> Manage Resume</h2>
+
+            <!-- Existing Resume Badge -->
+            <div th:if="${candidate.resume != null}" class="current-resume" data-aos="fade-in">
+                <p>
+                    <i class="fa-solid fa-check-double"></i> Current Resume: 
+                    <a th:href="@{'/uploads/' + ${candidate.resume}}" target="_blank">
+                        View Uploaded Resume <i class="fa-solid fa-external-link"></i>
+                    </a>
+                </p>
+            </div>
+
+            <form th:action="@{/Candidate/uploadResume}" method="post" enctype="multipart/form-data">
+                <div class="input-group">
+                    <label>Upload New Resume (PDF only)</label>
+                    <input type="file" name="resume" accept=".pdf" data-aos="fade-up">
+                </div>
+
+                <p class="hint">
+                    <i class="fa-solid fa-circle-exclamation"></i> Only PDF files are allowed. Max size: 1 MB.
+                </p>
+
+                <br>
+
+                <button type="submit" class="btn" style="max-width: 300px; margin: auto;" onclick="resumesuccess()">
+                    <i class="fa-solid fa-upload"></i> Upload Resume
+                </button>
             </form>
 
         </div>
 
-
-        <!-- RESUME UPLOAD -->
-
-        <!-- <div class="card resume-card">
-
-            <h2 style="margin-bottom:20px;">Upload Resume</h2>
-
-            <form th:action="@{/Candidate/uploadResume}" method="post" enctype="multipart/form-data">
-
-                <input type="file" name="resume" accept=".pdf,.doc,.docx" >
-                <p style="color: rgb(248, 44, 44); font-size: small;">Please upload the document in PDF format only. The file size must not exceed 1 MB. </p>
-
-
-                <br><br>
-
-                <button type="submit" class="btn" onclick="resumeuploadsuccess()">Upload Resume</button>
-
-            </form>
-
-        </div> -->
-
-        <div class="card resume-card">
-
-    <h2 style="margin-bottom:20px;">Upload Resume</h2>
-
-    <!-- Show existing resume -->
-    <div th:if="${candidate.resume != null}">
-        <p>
-            Current Resume :
-            <a th:href="@{'/uploads/' + ${candidate.resume}}" target="_blank">
-                View Resume
-            </a>
-        </p>
     </div>
 
-    <form th:action="@{/Candidate/uploadResume}" method="post" enctype="multipart/form-data">
-
-        <input type="file" name="resume" accept=".pdf">
-
-        <p style="color:red; font-size:small;">
-            Please upload the document in PDF format only. The file size must not exceed 1 MB.
-        </p>
-
-        <br><br>
-
-        <button type="submit" class="btn" onclick="resumesuccess()">Upload Resume</button>
-
-    </form>
-
-</div>
-
-    </div>
-
+    <!-- AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Navbar Scroll Effect
+        window.onscroll = () => {
+            const header = document.getElementById("mainHeader");
+            if (window.scrollY > 50) {
+                header.classList.add("fixed");
+            } else {
+                header.classList.remove("fixed");
+            }
+        };
+
         function updateSuccess(){
             alert("Profile Updated Successfully! 🎉✨");
         }
 
         function resumesuccess(){
-            alert("Resume Uploaded Successfully! 🎉✨ ")
+            alert("Resume Uploaded Successfully! 🎉✨ ");
         }
     </script>
 
