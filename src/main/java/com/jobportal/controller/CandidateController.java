@@ -92,20 +92,38 @@ public class CandidateController {
                 .toList();
 
         model.addAttribute("appliedJobIds", appliedJobIds);
+        
+        model.addAttribute("searchPerformed", false);
 
         return "candidateHome";
     }
 
     @GetMapping("/Candidate/search")
-    public String searchJobs(@RequestParam("keyword") String keyword, Model model) {
+    public String searchJobs(@RequestParam("keyword") String keyword, Model model,Principal principal) {
 
         System.out.println("Keyword: " + keyword);
         // List<Jobs> jobs = jobRepo.searchJobs(keyword);
 
+        String email = principal.getName();
+
+        Optional<User12> user12 = user12repo.findByEmail(email);
+
+        User12 newuser = user12.get();
+
+        String name = newuser.getName();
+        String profilePic = newuser.getProfilepic();
+
+        model.addAttribute("name", name);
+        model.addAttribute("profilePic", profilePic);
+
+        model.addAttribute("searchPerformed", true);
+
         List<Jobs> jobs = jobRepo
                 .findByTitleContainingIgnoreCaseOrSkillsRequiredContainingIgnoreCaseOrCompanyNameContainingIgnoreCase(
                         keyword, keyword, keyword);
-        model.addAttribute("jobs", jobs);
+        model.addAttribute("jobsearched", jobs);
+
+        // System.out.println();
 
         return "candidateHome";
     }

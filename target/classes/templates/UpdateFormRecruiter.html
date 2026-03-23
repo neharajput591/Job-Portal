@@ -1,384 +1,235 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Profile for Recruiter</title>
-</head>
-<body>
-    
-
-    <form th:action="@{/Recruiter/formData}" method="post" th:object="${recruiter}" enctype="multipart/form-data">
-
-        <label for="">Email</label>
-        <input type="text" name="email" th:field="*{email}"><br>
-        <label for="">Name</label>
-        <input type="text" name="name" th:field="*{name}"><br>
-        <label for="">Age</label>
-        <input type="number" name="age" th:field="*{age}"><br>
-        <label for="">Skills</label>
-        <input type="text" name="skills" th:field="*{skills}"><br>
-        <label for="">City</label>
-        <input type="text" name="city" th:field="*{city}"><br>
-        <label for="">State</label>
-        <input type="text" name="state" th:field="*{state}"><br>
-        <label for="">Country</label>
-        <input type="text" name="country" th:field="*{country}"><br>
-        <label for="">Contact</label>
-        <input type="number" name="contact" th:field="*{contact}"><br>
-        <label for="">About</label>
-        <textarea name="about" rows="4" th:field="*{about}"></textarea><br>
-        
-
-        <label for="">Education</label>
-        <input type="text" name="education" th:field="*{education}"><br>
-        <label for="">Experience</label>
-        <input type="number" name="experience" th:field="*{experience}"><br>
-
-        <label for="">Current Company Name</label>
-        <input type="text" name="companyName" th:field="*{companyName}"><br>
-        <label for="">Company Address</label>
-        <input type="text" name="companyAddress" th:field="*{companyAddress}"><br>
-        <label for="">Your Designation</label>
-        <input type="text" name="position" th:field="*{position}"><br>
-
-        <label for="">Profile pic</label>
-        <input type="file" name="pic" ><br>
-
-
-        <button type="submit">Submit</button>
-
-    </form>
-</body>
-</html> -->
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recruiter Profile Update</title>
+    <title>Update Profile | Recruitify</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
-        }
+    <!-- icon cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 
-        body {
-            background: linear-gradient(135deg, #eef2f3, #dfe9f3);
-            min-height: 100vh;
-        }
+    <!-- aos cdn -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-        /* HEADER */
-
-        .header {
-            display: flex;
-            align-items: center;
-            padding: 20px 60px;
-            background: linear-gradient(135deg, #1f4e79, #4db6ac);
-            color: white;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            font-size: 24px;
-            font-weight: 600;
-        }
-
-        .logo span {
-            font-size: 30px;
-            margin-right: 10px;
-        }
-
-        /* MAIN */
-
-        .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 50px 20px;
-        }
-
-        /* CARD */
-
-        .card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 18px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.18);
-        }
-
-        /* TITLE */
-
-        .title {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 26px;
-            color: #333;
-        }
-
-        /* GRID */
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 22px;
-        }
-
-        /* INPUT GROUP */
-
-        .input-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .input-group label {
-            font-size: 13px;
-            margin-bottom: 6px;
-            color: #555;
-            font-weight: 500;
-        }
-
-        .input-group input,
-        .input-group textarea {
-            padding: 12px;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-            font-size: 14px;
-            background: #f9fafc;
-            transition: 0.3s;
-        }
-
-        .input-group input:focus,
-        .input-group textarea:focus {
-            outline: none;
-            border-color: #4db6ac;
-            box-shadow: 0 0 8px rgba(77, 182, 172, 0.3);
-            background: white;
-        }
-
-        /* TEXTAREA FULL WIDTH */
-
-        .full {
-            grid-column: 1/3;
-        }
-
-        /* BUTTON */
-
-        .btn {
-            margin-top: 25px;
-            padding: 14px;
-            border: none;
-            border-radius: 30px;
-            background: linear-gradient(90deg, #2ecc71, #27ae60);
-            color: white;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 18px rgba(46, 204, 113, 0.4);
-        }
-
-        /* MOBILE */
-
-        @media(max-width:768px) {
-
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .full {
-                grid-column: 1;
-            }
-
-            .header {
-                padding: 15px 20px;
-            }
-
-        }
-
-        .profile-img{
-width:120px;
-height:120px;
-border-radius:50%;
-object-fit:cover;
-display:block;
-margin:auto;
-margin-bottom:20px;
-border:4px solid #4db6ac;
-box-shadow:0 6px 15px rgba(0,0,0,0.2);
-}
-    </style>
-
+    <!-- custom css -->
+    <link rel="stylesheet" th:href="@{/css/updateRecruiterStyle.css}">
 </head>
 
 <body>
 
-    <div class="header">
-        <div class="logo">
-            <span>👜</span> JobHub
+    <header id="mainHeader">
+        <div class="container">
+            <div class="logo">
+                <a th:href="@{/Recruiter/home}" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+                    <i class="fa-solid fa-users-viewfinder"></i> Recruitify
+                </a>
+            </div>
+            <nav id="nav">
+                <a th:href="@{/Recruiter/home}">Home</a>
+                <a th:href="@{/Recruiter/postRequest}">Post a Job</a>
+                <a th:href="@{/Recruiter/allcandidateapply}">Applications</a>
+                <a href="#">Resources</a>
+            </nav>
+            <div class="auth-buttons">
+                <a th:href="@{/logout}" style="text-decoration: none;">
+                    <button class="commonBtn" >
+                        <i class="fa-solid fa-right-from-bracket"></i> Logout
+                    </button>
+                </a>
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
         </div>
-    </div>
+    </header>
 
     <div class="container">
 
-        <div class="card">
+        <div class="page-header" data-aos="fade-down">
+            <h1>Update Your Profile</h1>
+            <p>Maintain your professional identity and company information</p>
+        </div>
 
-            <img th:src="@{'/profilePic/' + ${recruiter.profilepic}}" class="profile-img">
+        <div class="form-card" data-aos="fade-up">
 
+            <!-- Profile Picture Section -->
+            <div class="profile-pic-container">
+                <img th:src="@{'/profilePic/' + ${recruiter.profilepic}}" class="profile-img" alt="Profile Picture">
+                <div style="font-weight: 600; color: var(--primary-color);">Current Profile Picture</div>
+            </div>
 
-            <h2 class="title">Recruiter Profile</h2>
-
-            <form th:action="@{/Recruiter/formData}" method="post" th:object="${recruiter}"
-                enctype="multipart/form-data">
-
+            <form th:action="@{/Recruiter/formData}" method="post" th:object="${recruiter}" enctype="multipart/form-data">
                 <div class="form-grid">
-
                     <div class="input-group">
-                        <label>Email</label>
-                        <input type="text" th:field="*{email}">
+                        <label><i class="fa-solid fa-envelope"></i> Email Address</label>
+                        <input type="email" th:field="*{email}" placeholder="yourname@company.com" required>
                     </div>
 
                     <div class="input-group">
-                        <label>Name</label>
-                        <input type="text" th:field="*{name}">
+                        <label><i class="fa-solid fa-user"></i> Full Name</label>
+                        <input type="text" th:field="*{name}" placeholder="John Doe" required>
                     </div>
 
                     <div class="input-group">
-                        <label>Company Name</label>
-                        <input type="text" th:field="*{companyName}">
-                    </div>
-                    
-                    <div class="input-group">
-                        <label>Company Address</label>
-                        <input type="text" th:field="*{companyAddress}">
+                        <label><i class="fa-solid fa-building"></i> Company Name</label>
+                        <input type="text" th:field="*{companyName}" placeholder="Tech Solutions Inc." required>
                     </div>
 
                     <div class="input-group">
-                        <label>Your Designation</label>
-                        <input type="text" th:field="*{position}">
+                        <label><i class="fa-solid fa-location-dot"></i> Company Address</label>
+                        <input type="text" th:field="*{companyAddress}" placeholder="123 Business Park, Ave.">
                     </div>
 
                     <div class="input-group">
-                        <label>Profile Picture</label>
-                        <input type="file" name="pic">
+                        <label><i class="fa-solid fa-briefcase"></i> Your Designation</label>
+                        <input type="text" th:field="*{position}" placeholder="HR Manager / Senior Recruiter">
                     </div>
 
                     <div class="input-group">
-                        <label>Age</label>
-                        <input type="number" th:field="*{age}">
+                        <label><i class="fa-solid fa-image"></i> Change Profile Picture</label>
+                        <input type="file" name="pic" accept="image/*">
                     </div>
 
                     <div class="input-group">
-                        <label>Skills</label>
-                        <input type="text" th:field="*{skills}">
+                        <label><i class="fa-solid fa-cake-candles"></i> Age</label>
+                        <input type="number" th:field="*{age}" placeholder="25">
                     </div>
 
                     <div class="input-group">
-                        <label>City</label>
-                        <input type="text" th:field="*{city}">
+                        <label><i class="fa-solid fa-code"></i> Specialized Skills</label>
+                        <input type="text" th:field="*{skills}" placeholder="Hiring, Technical Interviewing, Sourcing">
                     </div>
 
                     <div class="input-group">
-                        <label>State</label>
-                        <input type="text" th:field="*{state}">
+                        <label><i class="fa-solid fa-city"></i> City</label>
+                        <input type="text" th:field="*{city}" placeholder="New York">
                     </div>
 
                     <div class="input-group">
-                        <label>Country</label>
-                        <input type="text" th:field="*{country}">
+                        <label><i class="fa-solid fa-map"></i> State</label>
+                        <input type="text" th:field="*{state}" placeholder="NY">
                     </div>
 
                     <div class="input-group">
-                        <label>Contact</label>
-                        <input type="number" th:field="*{contact}">
+                        <label><i class="fa-solid fa-globe"></i> Country</label>
+                        <input type="text" th:field="*{country}" placeholder="USA">
                     </div>
 
-                    
                     <div class="input-group">
-                        <label>Education</label>
-                        <input type="text" th:field="*{education}">
+                        <label><i class="fa-solid fa-phone"></i> Contact Number</label>
+                        <input type="number" th:field="*{contact}" placeholder="1234567890">
                     </div>
-                    
+
                     <div class="input-group">
-                        <label>Experience</label>
-                        <input type="number" th:field="*{experience}">
+                        <label><i class="fa-solid fa-graduation-cap"></i> Education</label>
+                        <input type="text" th:field="*{education}" placeholder="MBA in HR / Masters in Management">
                     </div>
-                    
+
+                    <div class="input-group">
+                        <label><i class="fa-solid fa-clock-rotate-left"></i> Experience (Years)</label>
+                        <input type="number" th:field="*{experience}" placeholder="5">
+                    </div>
+
                     <div class="input-group full">
-                        <label>About</label>
-                        <textarea rows="4" th:field="*{about}"></textarea>
+                        <label><i class="fa-solid fa-info-circle"></i> About You / Professional Summary</label>
+                        <textarea rows="4" th:field="*{about}" placeholder="Tell us about your professional background and hiring goals..."></textarea>
                     </div>
-
-                    <!-- <div class="input-group">
-                        <label>Company Address</label>
-                        <input type="text" th:field="*{companyAddress}">
-                    </div> -->
-<!-- 
-                    <div class="input-group">
-                        <label>Company KYC</label>
-                        <input type="file" name="kyc">
-                    </div> -->
-
-                    <!-- <div class="input-group">
-                        <label>Your Designation</label>
-                        <input type="text" th:field="*{position}">
-                    </div> -->
-
-                    <!-- <div class="input-group">
-                        <label>Profile Picture</label>
-                        <input type="file" name="pic">
-                    </div> -->
-
                 </div>
 
-                <button type="submit" class="btn">Save Profile</button>
-
+                <button type="submit" class="commonBtn" style="width: 100%; justify-content: center; padding: 18px;">
+                    <i class="fa-solid fa-circle-check"></i> Save Profile Changes
+                </button>
             </form>
+        </div>
 
+        <!-- KYC SECTION -->
+        <div class="kyc-card" data-aos="fade-right">
+            <h2><i class="fa-solid fa-shield-halved" style="color: var(--primary-color);"></i> Company Verification (KYC)</h2>
+            <p style="color: var(--gray-text); margin-bottom: 20px;">Upload your company's registration or tax documents to build trust with candidates.</p>
+
+            <form th:action="@{/Recruiter/uploadCompanyKyc}" method="post" enctype="multipart/form-data">
+                <div class="input-group">
+                    <input type="file" name="companyKyc" accept=".pdf,.doc,.docx" required>
+                </div>
+                <div class="kyc-info">
+                    <i class="fa-solid fa-circle-info"></i> Important: PDF format preferred. Max file size: 1 MB.
+                </div>
+                <br>
+                <button type="submit" class="commonBtn" style="background: #333; margin-top: 15px; width: 100%; justify-content: center; padding: 18px;">
+                    <i class="fa-solid fa-file-arrow-up"></i> Upload Company KYC
+                </button>
+            </form>
         </div>
 
     </div>
 
-            <!-- RESUME UPLOAD -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="column">
+                <div class="logo" style="color: var(--white);">
+                    <i class="fa-solid fa-users-viewfinder"></i>
+                    <span style="color: var(--primary-color);">Recruitify</span>
+                </div>
+                <br>
+                <p>Empowering recruiters to find the perfect match. Manage your hiring process seamlessly.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-square-google-plus"></i></a>
+                    <a href="#"><i class="fa-brands fa-square-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+                </div>
+            </div>
 
-        <div class="card resume-card">
+            <div class="column">
+                <h3>Job Categories</h3>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Work from Home</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Internship Job</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Freelancer Job</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Part Time Job</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Full Time Job</a>   
+            </div>
 
-            <h2 style="margin-bottom:20px;">Upload Company KYC</h2>
+            <div class="column">
+                <h3>Job Type</h3>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Create Account</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Career Counseling</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> My jobs</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> FAQ</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Report a Problem</a>   
+            </div>
 
-            <form th:action="@{/Recruiter/uploadCompanyKyc}" method="post" enctype="multipart/form-data">
+            <div class="column">
+                <h3>Resources</h3>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> My Account</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Support</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> How it Works</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Underwriting</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Employers</a>   
+            </div>
 
-                <input type="file" name="companyKyc" accept=".pdf,.doc,.docx" required>
-                <p style="color: rgb(248, 44, 44); font-size: small;">Please upload the document in PDF format only. The file size must not exceed 1 MB. </p>
-
-                <br><br>
-
-                <button type="submit" class="btn">Upload Company KYC</button>
-
-            </form>
-
+            <div class="column">
+                <h3>Quick Links</h3>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Job Listings</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> About Us</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Contact Us</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Privacy Policy</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Term & Conditions</a>   
+            </div>
         </div>
 
+        <div class="copy-right">
+            Copyright @ 2026 All Rights Reserved Recruitify.
+        </div>
+    </footer>
 
+    <!-- scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script th:src="@{/js/custom.js}"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
 </body>
 
 </html>

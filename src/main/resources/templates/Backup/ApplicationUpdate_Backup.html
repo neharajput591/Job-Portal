@@ -1,0 +1,218 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Update</title>
+</head>
+<body>
+    
+    <div th:each="applicationList:${applications}">
+
+        <span th:text="${applicationList.jobId}"></span>
+        <span th:text="${applicationList.application_id}"></span>
+        <h2 th:text="${applicationList.status}"></h2>
+    </div>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Status</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #eef2f3, #dfe9f3);
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 20px 60px;
+            background: linear-gradient(135deg, #1f4e79, #4db6ac);
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .logo span {
+            font-size: 30px;
+            margin-right: 10px;
+        }
+
+        /* CONTAINER */
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        /* TITLE */
+
+        .title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+            color: #333;
+        }
+
+        /* APPLICATION CARD */
+
+        .application-card {
+            background: white;
+            padding: 25px;
+            border-radius: 14px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .application-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        /* INFO */
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .label {
+            font-size: 13px;
+            color: #777;
+        }
+
+        .value {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        /* STATUS BADGE */
+
+        .status {
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* STATUS COLORS */
+
+        .pending {
+            background: #fff4e5;
+            color: #f39c12;
+        }
+
+        .accepted {
+            background: #e8f8f5;
+            color: #16a085;
+        }
+
+        .rejected {
+            background: #fdecea;
+            color: #e74c3c;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:700px) {
+
+            .application-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="logo">
+            <span>👜</span> JobHub
+        </div>
+    </div>
+
+    <div class="container">
+
+        <h2 class="title">Your Applications</h2>
+
+        <div th:each="applicationList:${applications}" class="application-card">
+
+            <!-- <div class="info" th:each="jobName:${jobTitle}"> -->
+
+                <div>
+                    <span class="label">Candidate Name : </span>
+                    <span class="value" th:text="${candidateName}"></span>
+                </div>
+
+                <div>
+                    <span class="label">Job Name:</span>
+                    <span class="value" th:text="${applicationList.jobTitle}"></span>
+                </div>
+                <div>
+                    <span class="label">Resume:</span>
+                    <!-- <span class="value" th:text="${applicationList.resumeUrl}"></span> -->
+                    <a th:href="@{'/uploads/' + ${applicationList.resumeUrl}}" target="_blank">view</a>
+                </div>
+
+                <!-- <div>
+                    <span class="label">Application ID:</span>
+                    <span class="value" th:text="${applicationList.application_id}"></span>
+                </div> -->
+
+                <div>
+                    <span class="label">View Job Desc : </span>
+                    <a th:href="@{/job/jobdetailafterapply/{jobId}(jobId=${applicationList.jobId})}">Job Desc</a>
+                </div>
+            <!-- </div> -->
+
+            <div>
+
+                <span th:text="${applicationList.status}" th:class="'status ' + 
+      (${applicationList.status}=='Accepted' ? 'accepted' :
+       (${applicationList.status}=='Rejected' ? 'rejected' : 'pending'))">
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

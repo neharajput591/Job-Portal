@@ -89,7 +89,7 @@ body {
     font-weight: 600;
 }
 
-.input-group input, 
+.input-group input,
 .input-group textarea {
     padding: 12px 15px;
     border-radius: 10px;
@@ -100,7 +100,7 @@ body {
     font-family: inherit;
 }
 
-.input-group input:focus, 
+.input-group input:focus,
 .input-group textarea:focus {
     outline: none;
     border-color: var(--primary-color);
@@ -179,14 +179,14 @@ body {
     text-decoration: underline;
 }
 
-/* Header Styles */
-.page-header {
+/* Header Styles Matching Candidate Home */
+#mainHeader {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    padding: 50px 100px;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 15px 40px; /* Base padding restored to last working version */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -196,8 +196,18 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.page-header.fixed {
-    padding: 50px 100px;
+#mainHeader.fixed {
+    padding: 10px 40px;
+    background: rgba(0, 0, 0, 0.95);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .logo {
@@ -228,9 +238,11 @@ body {
     .form-grid {
         grid-template-columns: 1fr;
     }
+
     .full {
         grid-column: 1;
     }
+
     .page-header {
         padding: 15px 20px;
     }

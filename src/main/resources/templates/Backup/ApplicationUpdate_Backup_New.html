@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Status | Recruitify</title>
+
+    <!-- icon cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+
+    <!-- Separate CSS -->
+    <link rel="stylesheet" th:href="@{/css/applicationUpdateStyle.css}">
+</head>
+
+<body>
+
+    <header id="mainHeader">
+        <div class="container">
+            <div class="logo">
+                <a th:href="@{/candidate_home}" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+                    <i class="fa-solid fa-users-viewfinder"></i> Recruitify
+                </a>
+            </div>
+            <nav id="nav">
+                <a th:href="@{/candidate_home}">Home</a>
+                <a th:href="@{/candidate_home}">Find Jobs</a>
+                <a th:href="@{/Candidate/ApplicationUpdate}">My Applications</a>
+                <a th:href="@{/Candidate/UpdateProfile}">Profile</a>
+            </nav>
+            <div class="auth-buttons">
+                <a th:href="@{/logout}" title="Logout" class="logout-icon">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </a>
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2 class="page-title" data-aos="zoom-in">Your Applications</h2>
+        <p class="sub-title" data-aos="zoom-in">Track the status of your job applications in real-time.</p>
+
+        <div class="jobs-container">
+            <div th:each="applicationList:${applications}" class="job-card" data-aos="fade-up">
+                
+                <span th:class="'status-badge status-' + ${applicationList.status}" th:text="${applicationList.status}"></span>
+
+                <div class="job-info">
+                    <div class="candidate-name" th:text="'Applied as: ' + ${candidateName}"></div>
+                    <div class="job-title" th:text="${applicationList.jobTitle}">Job Title</div>
+                    
+                    <div class="job-details">
+                        <div class="details-item">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <span>Resume: <a th:href="@{'/uploads/' + ${applicationList.resumeUrl}}" target="_blank">View Resume</a></span>
+                        </div>
+                        <div class="details-item">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <span>Details: <a th:href="@{/job/jobdetailafterapply/{jobId}(jobId=${applicationList.jobId})}">View Job Description</a></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-links">
+                    <a th:href="@{/job/jobdetailafterapply/{jobId}(jobId=${applicationList.jobId})}" class="action-btn">
+                        <i class="fa-solid fa-eye"></i> View Job
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="backToTop">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="column">
+                <div class="logo">
+                    <i class="fa-solid fa-users-viewfinder"></i>
+                    <span style="color: var(--primary-color);">Recruitify</span>
+                </div>
+                <br>
+                <p>Its a great platform to find a perfect candidate by a recruiter and a perfect job by a candidate</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-square-google-plus"></i></a>
+                    <a href="#"><i class="fa-brands fa-square-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="column">
+                <h3>Job Categories</h3>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Work from Home</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Internship Job</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Freelancer Job</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Part Time Job</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Full Time Job</a>   
+            </div>
+
+            <div class="column">
+                <h3>Job Type</h3>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Create Account</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Career Counseling</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> My jobs</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> FAQ</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Report a Problem</a>   
+            </div>
+
+            <div class="column">
+                <h3>Resources</h3>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> My Account</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Support</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> How it Works</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Underwriting</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Employers</a>   
+            </div>
+
+            <div class="column">
+                <h3>Quick Links</h3>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Job Listings</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> About Us</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Contact Us</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Privacy Policy</a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i> Term & Conditions</a>   
+            </div>
+        </div>
+        <div class="copy-right">
+            Copyright @ 2026 All Rights Reserved Recruitify.
+        </div>
+    </footer>
+
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
+    <!-- Custom JS for scroll events, backToTop, etc. -->
+    <script th:src="@{/js/custom.js}"></script>
+</body>
+
+</html>

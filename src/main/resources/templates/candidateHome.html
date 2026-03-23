@@ -7,8 +7,9 @@
     <title>Candidate Dashboard | Recruitify</title>
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+
     <!-- Icon CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -17,7 +18,7 @@
 
     <!-- Global Styles -->
     <link rel="stylesheet" th:href="@{/css/style.css}">
-    
+
     <!-- Page Specific Styles -->
     <link rel="stylesheet" th:href="@{/css/candidateHomeStyle.css?v=2.3}">
 </head>
@@ -29,17 +30,18 @@
         <div class="logo">
             <i class="fa-solid fa-users-viewfinder"></i> Recruitify
         </div>
-        
+
         <div class="header-nav">
-            <a th:href="@{/Candidate/ApplicationUpdate}" class="commonBtn" style="text-decoration: none; padding: 10px 20px; font-size: 14px;">
+            <a th:href="@{/Candidate/ApplicationUpdate}" class="commonBtn"
+                style="text-decoration: none; padding: 10px 20px; font-size: 14px;">
                 <i class="fa-solid fa-bell"></i> Application Updates
             </a>
-            
+
             <a th:href="@{/Candidate/UpdateProfile}" class="profile-link">
                 <img th:src="@{'/profilePic/' + ${profilePic}}" alt="Profile" class="nav-profile-pic">
                 <span th:text="${name}" class="profile-name" style="font-weight: 600;"></span>
             </a>
-            
+
             <a th:href="@{/}" title="Logout">
                 <i class="fa-solid fa-right-from-bracket" style="color: white; font-size: 20px;"></i>
             </a>
@@ -47,17 +49,63 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-section">
-        <h1>Welcome Back, <span th:text="${name}">Candidate</span>! 👋</h1>
-        <p>Your one-stop destination to manage applications and discover your next big career move.</p>
-    </section>
+    <div class="heroandSerch">
+        <section class="hero-section">
+            <h1>Welcome Back, <span th:text="${name}">Candidate</span>! 👋</h1>
+            <p>Your one-stop destination to manage applications and discover your next big career move.</p>
+        </section>
 
-    <!-- Search Section -->
-    <div class="search-container">
-        <form th:action="@{/Candidate/search}" method="get" class="search-box">
-            <input type="text" name="keyword" placeholder="Search by job title, skills, or company name...">
-            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i> Search Jobs</button>
-        </form>
+        <!-- Search Section -->
+        <div class="search-container">
+            <form th:action="@{/Candidate/search}" method="get" class="search-box">
+                <input type="text" name="keyword" placeholder="Search by job title, skills, or company name...">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i> Search Jobs</button>
+            </form>
+        </div>
+
+        <div class="container">
+            <!-- <h2 class="section-title" data-aos="fade-up">Recommended For You</h2> -->
+
+            <div class="job-grid" th:if="${jobsearched != null and !#lists.isEmpty(jobsearched)}"
+                style="text-align: center;">
+                <!-- Job Card -->
+                <div class="job-card" th:each="job, iterStat : ${jobsearched}"
+                    th:attr="data-aos=${iterStat.index % 2 == 0 ? 'fade-right' : 'fade-left'}, data-aos-delay=${iterStat.index * 100}">
+                    <div class="job-card-header">
+                        <h3 th:text="${job.title}" class="job-title"></h3>
+                        <span class="salary-tag" th:text="${job.salary}"></span>
+                    </div>
+
+                    <div class="job-meta">
+                        <span><i class="fa-solid fa-building"></i> <span th:text="${job.companyName}"></span></span>
+                        <span><i class="fa-solid fa-location-dot"></i> <span th:text="${job.location}"></span></span>
+                    </div>
+
+                    <div class="skill-tags">
+                        <span class="skill-tag" th:text="${job.skillsRequired}"></span>
+                    </div>
+
+                    <div class="job-card-actions">
+                        <a th:href="@{/job/jobdetail/{jobId}(jobId=${job.jobId})}" class="view-detail-btn">
+                            View Details
+                        </a>
+
+
+                    </div>
+                </div>
+
+
+                <!-- <div>
+                    <p th:if="${jobsearched == null}">No Result Found</p>
+                </div> -->
+            </div>
+
+            <div th:if="${searchPerformed and (jobsearched == null or #lists.isEmpty(jobsearched))}">
+                <p
+                    style="color: rgb(54, 51, 51); text-align: center; text-decoration: double;font-weight: 800; font-size: medium;">
+                    No Result Found</p>
+            </div>
+        </div>
     </div>
 
     <!-- Stats Section -->
@@ -83,10 +131,11 @@
     <!-- Recommended Jobs Section -->
     <div class="container">
         <h2 class="section-title" data-aos="fade-up">Recommended For You</h2>
-        
-            <div class="job-grid">
+
+        <div class="job-grid">
             <!-- Job Card -->
-            <div class="job-card" th:each="job, iterStat : ${jobs}" th:attr="data-aos=${iterStat.index % 2 == 0 ? 'fade-right' : 'fade-left'}, data-aos-delay=${iterStat.index * 100}">
+            <div class="job-card" th:each="job, iterStat : ${jobs}"
+                th:attr="data-aos=${iterStat.index % 2 == 0 ? 'fade-right' : 'fade-left'}, data-aos-delay=${iterStat.index * 100}">
                 <div class="job-card-header">
                     <h3 th:text="${job.title}" class="job-title"></h3>
                     <span class="salary-tag" th:text="${job.salary}"></span>
@@ -105,11 +154,10 @@
                     <a th:href="@{/job/jobdetail/{jobId}(jobId=${job.jobId})}" class="view-detail-btn">
                         View Details
                     </a>
-                    
-                    <a th:if="${!appliedJobIds.contains(job.jobId)}" 
-                       th:href="@{/job/applynow/{jobId}(jobId=${job.jobId})}" 
-                       class="apply-now-btn" 
-                       onclick="applicationSuccess()">
+
+                    <a th:if="${!appliedJobIds.contains(job.jobId)}"
+                        th:href="@{/job/applynow/{jobId}(jobId=${job.jobId})}" class="apply-now-btn"
+                        onclick="applicationSuccess()">
                         Apply Now
                     </a>
 
@@ -127,20 +175,22 @@
     <section style="background: rgba(255,255,255,0.4); padding: 80px 0;">
         <div class="container">
             <h2 class="section-title" data-aos="zoom-in">Why Choose Recruitify?</h2>
-            
+
             <div class="features-grid">
                 <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
                     <h3>Verified Jobs</h3>
-                    <p>Every job listing is manually verified to ensure high-quality opportunities for our candidates.</p>
+                    <p>Every job listing is manually verified to ensure high-quality opportunities for our candidates.
+                    </p>
                 </div>
-                
+
                 <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
                     <h3>Fast Response</h3>
-                    <p>Our direct-to-recruiter system ensures your application gets seen faster than traditional portals.</p>
+                    <p>Our direct-to-recruiter system ensures your application gets seen faster than traditional
+                        portals.</p>
                 </div>
-                
+
                 <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="feature-icon"><i class="fa-solid fa-user-gear"></i></div>
                     <h3>Smart Matching</h3>
@@ -155,52 +205,76 @@
         <i class="fa-solid fa-arrow-up"></i>
     </button>
 
-    <footer class="footer-main">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <div class="logo" style="margin-bottom: 20px;">
-                    <i class="fa-solid fa-users-viewfinder"></i> Recruitify
+    <footer class="footer" id="footer"
+        style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpNHktz1qPY4eT7OV43_C2VfI1HZCiFmJLVw&s'); background-size: 60%; background-repeat: repeat-x; background-position: bottom; padding: 100px 20px 40px; margin-top: 40px;">
+        <div class="container"
+            style="display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 1400px; margin: 0 auto; color: #333; text-align: left;">
+            <div class="column" style="flex: 1; margin: 10px; min-width: 180px;">
+                <div class="logo" style="color: #333; font-size: 24px; font-weight: bold; margin-bottom: 20px;">
+                    <i class="fa-solid fa-users-viewfinder" style="color: #44b678;"></i>
+                    <span style="color: #44b678;">Recruitify</span>
                 </div>
-                <p style="color: var(--primary-color);">Join thousands of professionals finding their dream careers. We connect the best talent with top companies globally.</p>
-                <div class="footer-social">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <p>Join thousands of professionals finding their dream careers. We connect the best talent with top
+                    companies globally.</p>
+                <div class="social-pill" style="display: flex; gap: 15px; margin-top: 30px;">
+                    <a href="#"
+                        style="background: white; border: 1px solid #ddd; color: #44b678; font-size: 24px; padding: 10px; border-radius: 12px; display: inline-flex;"><i
+                            class="fa-brands fa-square-facebook"></i></a>
+                    <a href="#"
+                        style="background: white; border: 1px solid #ddd; color: #44b678; font-size: 24px; padding: 10px; border-radius: 12px; display: inline-flex;"><i
+                            class="fa-brands fa-square-google-plus"></i></a>
+                    <a href="#"
+                        style="background: white; border: 1px solid #ddd; color: #44b678; font-size: 24px; padding: 10px; border-radius: 12px; display: inline-flex;"><i
+                            class="fa-brands fa-square-x-twitter"></i></a>
+                    <a href="#"
+                        style="background: white; border: 1px solid #ddd; color: #44b678; font-size: 24px; padding: 10px; border-radius: 12px; display: inline-flex;"><i
+                            class="fa-brands fa-square-instagram"></i></a>
                 </div>
             </div>
-            
-            <div class="footer-col">
-                <h3>Quick Links</h3>
-                <ul class="footer-links">
-                    <li><a th:href="@{/candidate_home}">Dashboard</a></li>
-                    <li><a th:href="@{/Candidate/UpdateProfile}">My Profile</a></li>
-                    <li><a th:href="@{/Candidate/ApplicationUpdate}">Applications</a></li>
-                    <li><a th:href="@{/}">Sign Out</a></li>
+
+            <div class="column" style="flex: 1; margin: 10px; min-width: 180px;">
+                <h3 style="margin-bottom: 30px; font-size: 18px; color: #1a1a1a; font-weight: 800;">Quick Links</h3>
+                <ul class="footer-links" style="list-style: none; padding: 0;">
+                    <li><a th:href="@{/candidate_home}"
+                            style="text-decoration: none; display: block; color: #333; font-size: 14px; margin: 15px 0;">Dashboard</a>
+                    </li>
+                    <li><a th:href="@{/Candidate/UpdateProfile}"
+                            style="text-decoration: none; display: block; color: #333; font-size: 14px; margin: 15px 0;">My
+                            Profile</a></li>
+                    <li><a th:href="@{/Candidate/ApplicationUpdate}"
+                            style="text-decoration: none; display: block; color: #333; font-size: 14px; margin: 15px 0;">Applications</a>
+                    </li>
                 </ul>
             </div>
-            
-            <div class="footer-col">
-                <h3>Support</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Contact Us</a></li>
+
+            <div class="column" style="flex: 1; margin: 10px; min-width: 180px;">
+                <h3 style="margin-bottom: 30px; font-size: 18px; color: #1a1a1a; font-weight: 800;">Support</h3>
+                <ul class="footer-links" style="list-style: none; padding: 0;">
+                    <li><a href="#"
+                            style="text-decoration: none; display: block; color: #333; font-size: 14px; margin: 15px 0;">Help
+                            Center</a></li>
+                    <li><a href="#"
+                            style="text-decoration: none; display: block; color: #333; font-size: 14px; margin: 15px 0;">Privacy
+                            Policy</a></li>
+                    <li><a href="#"
+                            style="text-decoration: none; display: block; color: #333; font-size: 14px; margin: 15px 0;">Terms
+                            of Service</a></li>
                 </ul>
             </div>
-            
-            <div class="footer-col">
-                <h3>Contact Us</h3>
-                <p><i class="fa-solid fa-envelope" style="color: var(--primary-color); margin-right: 10px;"></i> support@recruitify.com</p>
-                <p><i class="fa-solid fa-phone" style="color: var(--primary-color); margin-right: 10px;"></i> +1 (234) 567-890</p>
-                <p><i class="fa-solid fa-location-dot" style="color: var(--primary-color); margin-right: 10px;"></i> New York, NY 10001</p>
+
+            <div class="column" style="flex: 1; margin: 10px; min-width: 180px;">
+                <h3 style="margin-bottom: 30px; font-size: 18px; color: #1a1a1a; font-weight: 800;">Contact Us</h3>
+                <p style="font-size: 14px; margin: 15px 0;"><i class="fa-solid fa-envelope"
+                        style="color: #44b678; margin-right: 10px;"></i> support@recruitify.com</p>
+                <p style="font-size: 14px; margin: 15px 0;"><i class="fa-solid fa-phone"
+                        style="color: #44b678; margin-right: 10px;"></i> +1 (234) 567-890</p>
+                <p style="font-size: 14px; margin: 15px 0;"><i class="fa-solid fa-location-dot"
+                        style="color: #44b678; margin-right: 10px;"></i> New York, NY 10001</p>
             </div>
         </div>
-        
-        <div class="footer-bg"></div>
-        <div class="footer-bottom">
-            &copy; 2026 Recruitify Inc. All rights reserved. Made with <i class="fa-solid fa-heart" style="color: #e74c3c;"></i> for candidates.
+        <div class="copy-right"
+            style="padding: 20px 10px; font-size: 14px; text-align: center; color: #666; border-top: 1px solid #eee; margin-top: 40px;">
+            Copyright @ 2026 All Rights Reserved Recruitify.
         </div>
     </footer>
 

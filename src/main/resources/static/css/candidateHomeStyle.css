@@ -19,6 +19,7 @@ body {
     color: var(--text-main);
     line-height: 1.6;
     overflow-x: hidden;
+    /* background: url("../images/working\ professional.webp"); */
 }
 
 /* Header Styles */
@@ -52,6 +53,7 @@ body {
     letter-spacing: 0.5px;
     padding-top: 20px;
     padding-bottom: 20px;
+    color: var(--white);
 }
 
 .logo i {
@@ -90,7 +92,24 @@ body {
 .hero-section {
     padding: 160px 20px 60px 20px;
     text-align: center;
-    background: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.02));
+    /* background: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.02)); */
+    /* background: url("../images/working\ professional.webp");
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    background-size: cover; */
+
+}
+
+.heroandSerch {
+    /* background: url("../images/amanwithlaptop.jpg"); */
+    background: url("../images/working\ professional.webp");
+
+    /* background: url("https://www.shutterstock.com/image-photo/happy-professional-business-man-company-260nw-2424450769.jpg"); */
+    /* background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYIqo2wJyiQ7t_qZ4sbu9uKCgozmsDstxzvw&s"); */
+    /* background: url("https://img.freepik.com/premium-photo/smiling-young-man-working-laptop-with-copy-space_41691-10030.jpg?semt=ais_rp_progressive&w=740&q=80"); */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 .hero-section h1 {
@@ -106,7 +125,9 @@ body {
 
 .hero-section p {
     font-size: 18px;
-    color: var(--text-muted);
+    /* color: var(--text-muted); */
+    /* color: var(--text-muted); */
+    color: #bdeabf;
     max-width: 600px;
     margin: auto;
 }
@@ -422,7 +443,7 @@ body {
     /* background: #0d1b2a; */
     /* color: #e0e1dd; */
 
-     background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpNHktz1qPY4eT7OV43_C2VfI1HZCiFmJLVw&s");
+    background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpNHktz1qPY4eT7OV43_C2VfI1HZCiFmJLVw&s");
     background-size: 60%;
     background-repeat: repeat-x;
     background-position: bottom;
@@ -439,11 +460,11 @@ body {
     margin: auto;
 }
 
-.logo{
+.logo {
     color: var(--primary-color);
 }
 
-.footer-col{
+.footer-col {
 
     /* color: var(--primary-color) */
 }

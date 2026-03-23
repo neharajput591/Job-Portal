@@ -1,263 +1,186 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Candidates Applications</title>
-</head>
-<body>
-    
-    <h1>Candidate Application</h1>
-
-    <table>
-        <tr>
-            <th>
-                Application Id 
-            </th>
-
-            <th>Candidate Id</th>
-            <th>Resume</th>
-            <th>Applied Date</th>
-
-            <th>Status</th>
-        </tr>
-
-        <tr th:each="candidate:${candidateList}">
-
-            <td th:text="${candidate.application_id}"></td>
-            <td th:text="${candidate.candidateId}"></td>
-            
-            <td>
-    <a th:href="@{'/uploads/'+${candidate.resumeUrl}}" target="_blank">View Resume</a>
-</td>
-            <td th:text="${candidate.appliedDate}"></td>
-
-            <td>
-                <button ><a th:href="@{/Recruiter/Hire/{application_id}(application_id=${candidate.application_id})}">Accept</a></button>
-                <button><a th:href="@{/Recruiter/Reject/{application_id}(application_id=${candidate.application_id})}">Reject</a></button>
-            </td>
-        </tr>
-    </table>
-
-
-</body>
-</html> -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Candidates Applications</title>
+    <title>Candidate Applications | Recruitify</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
-        }
+    <!-- icon cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-        body {
-            background: linear-gradient(135deg, #eef2f3, #dfe9f3);
-            min-height: 100vh;
-        }
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
 
-        /* HEADER */
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 60px;
-            background: linear-gradient(135deg, #1f4e79, #4db6ac);
-            color: white;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 600;
-        }
-
-        /* PAGE CONTAINER */
-
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 40px 20px;
-        }
-
-        /* CARD */
-
-        .table-card {
-            background: white;
-            padding: 30px;
-            border-radius: 14px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        }
-
-        .table-card h1 {
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        /* TABLE */
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            overflow: hidden;
-        }
-
-        th {
-            background: #1f4e79;
-            color: white;
-            padding: 12px;
-            text-align: left;
-        }
-
-        td {
-            padding: 12px;
-            border-bottom: 1px solid #eee;
-            vertical-align: middle;
-        }
-
-        tr:hover {
-            background: #f9f9f9;
-        }
-
-        /* BUTTONS */
-
-        .actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .actions a {
-            text-decoration: none;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 13px;
-        }
-
-        .accept {
-            background: #2ecc71;
-        }
-
-        .reject {
-            background: #e74c3c;
-        }
-
-        /* RESUME BUTTON */
-
-        .resume-btn {
-            background: #3498db;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 13px;
-        }
-
-        .resume-btn:hover {
-            opacity: 0.9;
-        }
-
-        /* EMPTY STATE */
-
-        .empty {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-            font-size: 16px;
-        }
-    </style>
-
+    <!-- Separate CSS -->
+    <link rel="stylesheet" th:href="@{/css/candidateApplicationsStyle.css}">
 </head>
 
 <body>
 
-    <!-- HEADER -->
-
-    <div class="header">
-        <div class="logo">👜 JobHub Recruiter</div>
-    </div>
-
-
-    <div class="container">
-
-        <div class="table-card">
-
-            <h1>Candidate Applications</h1>
-
-            <table>
-
-                <thead>
-
-                    <tr>
-                        <th>Application ID</th>
-                        <th>job Title</th>
-                        <th>Candidate ID</th>
-                        <th>Candidate Name</th>
-                        <th>Resume</th>
-                        <th>Applied Date</th>
-                        <th>Actions</th>
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    <tr th:each="candidate:${candidateList}">
-
-                        <td th:text="${candidate.application_id}"></td>
-                        <td th:text="${candidate.jobTitle}"></td>
-
-                        <td th:text="${candidate.candidateId}"></td>
-                        <td th:text="${candidate.candidateName}"></td>
-
-                        <td>
-                            <a class="resume-btn" th:href="@{'/uploads/'+${candidate.resumeUrl}}" target="_blank">
-                                View Resume
-                            </a>
-                        </td>
-
-                        <td th:text="${candidate.appliedDate}"></td>
-
-                        <td class="actions">
-
-                            <a class="accept"
-                                th:href="@{/Recruiter/Hire/{application_id}(application_id=${candidate.application_id})}">
-                                Accept
-                            </a>
-
-                            <a class="reject"
-                                th:href="@{/Recruiter/Reject/{application_id}(application_id=${candidate.application_id})}">
-                                Reject
-                            </a>
-
-                        </td>
-
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-            <!-- Empty State -->
-
-            <div class="empty" th:if="${#lists.isEmpty(candidateList)}">
-                No applications received yet for this job.
+    <!-- header -->
+    <header id="mainHeader">
+        <div class="container">
+            <div class="logo">
+                <a th:href="@{/Recruiter/home}" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+                    <i class="fa-solid fa-users-viewfinder"></i> Recruitify
+                </a>
             </div>
+            <nav id="nav">
+                <a th:href="@{/Recruiter/home}">Home</a>
+                <a th:href="@{/Recruiter/postRequest}">Post a Job</a>
+                <a th:href="@{/Recruiter/allcandidateapply}">Applications</a>
+                <a href="#">Resources</a>
+            </nav>
+            <div class="auth-buttons">
+                <a th:href="@{/logout}" title="Logout" class="logout-icon">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </a>
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        </div>
+    </header>
 
+    <div class="main-content">
+        <div class="header-text" data-aos="fade-down">
+            <h1>Candidate Applications</h1>
+            <p>Review and manage professionals who applied for your opportunities.</p>
         </div>
 
+        <div class="glass-card" data-aos="fade-up">
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Job Title</th>
+                            <th>Candidate</th>
+                            <th>Resume</th>
+                            <th>Applied Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="candidate:${candidateList}" data-aos="fade-up" th:data-aos-delay="${candidateStat.index * 50}">
+                            <td th:text="${candidate.application_id}"></td>
+                            <td>
+                                <strong th:text="${candidate.jobTitle}"></strong>
+                            </td>
+                            <td>
+                                <div th:text="${candidate.candidateName}" style="font-weight: 700; color: #1a1a1a;"></div>
+                                <div th:text="'ID: ' + ${candidate.candidateId}" style="font-size: 11px; color: #666;"></div>
+                            </td>
+                            <td>
+                                <a class="resume-btn" th:href="@{'/uploads/'+${candidate.resumeUrl}}" target="_blank">
+                                    <i class="fa-solid fa-file-pdf"></i> View Resume
+                                </a>
+                            </td>
+                            <td th:text="${candidate.appliedDate}"></td>
+                            <td class="actions">
+                                <a class="accept" th:href="@{/Recruiter/Hire/{application_id}(application_id=${candidate.application_id})}">
+                                    Accept
+                                </a>
+                                <a class="reject" th:href="@{/Recruiter/Reject/{application_id}(application_id=${candidate.application_id})}">
+                                    Reject
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Empty State -->
+                <div class="empty" th:if="${#lists.isEmpty(candidateList)}" data-aos="zoom-in">
+                    <i class="fa-solid fa-inbox"></i>
+                    No applications received yet.
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- footer -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="column">
+                <div class="logo">
+                    <i class="fa-solid fa-users-viewfinder"></i>
+                    <span style="color: var(--primary-color);">Recruitify</span>
+                </div>
+                <br>
+                <p>Its a great platform to find a perfect candidate by a recruiter and a perfect job by a candidate</p>
+                <div class="social-pill">
+                    <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-square-google-plus"></i></a>
+                    <a href="#"><i class="fa-brands fa-square-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="column">
+                <h3>Job Categories</h3>
+                <a href="#">Work from Home</a>
+                <a href="#">Internship Job</a>
+                <a href="#">Freelancer Job</a>
+                <a href="#">Part Time Job</a>
+                <a href="#">Full Time Job</a>   
+            </div>
+
+            <div class="column">
+                <h3>Job Type</h3>
+                <a href="#">Create Account</a>
+                <a href="#">Career Counseling</a>
+                <a href="#">My jobs</a>
+                <a href="#">FAQ</a>
+                <a href="#">Report a Problem</a>   
+            </div>
+
+            <div class="column">
+                <h3>Resources</h3>
+                <a href="#">My Account</a>
+                <a href="#">Support</a>
+                <a href="#">How it Works</a>
+                <a href="#">Underwriting</a>
+                <a href="#">Employers</a>   
+            </div>
+
+            <div class="column">
+                <h3>Quick Links</h3>
+                <a href="#">Job Listings</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Term & Conditions</a>   
+            </div>
+        </div>
+        <div class="copy-right">
+            Copyright @ 2026 All Rights Reserved Recruitify.
+        </div>
+    </footer>
+
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            easing: 'ease-in-out'
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) {
+                header.classList.add('fixed');
+            } else {
+                header.classList.remove('fixed');
+            }
+        });
+
+        function toggleMenu() {
+            const nav = document.getElementById('nav');
+            nav.classList.toggle('active');
+        }
+    </script>
 </body>
 
 </html>
+ml>
