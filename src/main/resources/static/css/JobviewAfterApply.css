@@ -130,6 +130,7 @@ header .container {
 /* Main Content */
 .main {
     padding: 80px 20px 60px; /* adjusted for fixed header */
+    
 }
 
 .welcome-msg {
@@ -247,6 +248,7 @@ header .container {
 /* Info Sections */
 .info-section {
     margin-top: 35px;
+    /* margin-bottom: 0%; */
 }
 
 .info-section h3 {
@@ -276,7 +278,7 @@ header .container {
     background-repeat: repeat-x;
     background-position: bottom;
     padding: 60px 0 20px;
-    margin-top: 80px;
+    margin-top: 0px;
 }
 
 .footer .container {

@@ -82,13 +82,13 @@ header .container {
     font-size: 28px;
 }
 
-.nav {
+nav {
     display: flex;
     gap: 30px;
     align-items: center;
 }
 
-.nav a {
+nav a {
     color: var(--white);
     text-decoration: none;
     transition: var(--transition);
@@ -98,7 +98,7 @@ header .container {
     padding: 5px 0;
 }
 
-.nav a::after {
+nav a::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -109,11 +109,11 @@ header .container {
     transition: 0.3s;
 }
 
-.nav a:hover::after {
+nav a:hover::after {
     width: 100%;
 }
 
-.nav a:hover {
+nav a:hover {
     color: var(--primary-color);
 }
 
@@ -169,7 +169,7 @@ header .container {
 
 /* Main Content Area */
 .main-content {
-    margin-top: 150px;
+    margin-top: 100px;
     padding: 0 20px 40px;
 }
 

@@ -24,7 +24,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
         body {
@@ -34,7 +34,7 @@
             flex-direction: column;
         }
 
-        /* HEADER Styles Matching newindexYoutube */
+        /* HEADER Styles Matching ApplicationUpdate */
         #mainHeader {
             transition: all 0.4s ease;
             padding: 0px 50px;
@@ -44,11 +44,12 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        #mainHeader.fixed {
+            padding: 10px 50px;
+            background: rgba(0, 0, 0, 0.95);
         }
 
         #mainHeader .container {
@@ -61,40 +62,54 @@
             padding: 15px 0;
         }
 
-        #mainHeader.fixed {
-            padding: 10px 50px;
-            background: rgba(0, 0, 0, 0.95);
-        }
-
         .logo {
             display: flex;
             align-items: center;
             font-size: 24px;
-            font-weight: bold;
+            font-weight: 800;
             color: white;
             text-decoration: none;
+            letter-spacing: -0.5px;
         }
 
         .logo i {
-            margin-right: 10px;
-            color: #44b678; /* primary-color */
+            margin-right: 12px;
+            color: #44b678;
+            font-size: 28px;
         }
 
-        .nav {
+        nav {
             display: flex;
             gap: 30px;
             align-items: center;
         }
 
-        .nav a {
+        nav a {
             color: white;
             text-decoration: none;
             transition: 0.3s;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 15px;
+            position: relative;
+            padding: 5px 0;
         }
 
-        .nav a:hover {
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #44b678;
+            transition: 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
             color: #44b678;
         }
 
@@ -144,7 +159,7 @@
         .success-icon {
             font-size: 60px;
             margin-bottom: 15px;
-            color: #2ecc71;
+            color: #44b678;
         }
 
         .success-card h1 {
@@ -195,6 +210,46 @@
 </head>
 
 <body>
+
+    <header id="mainHeader">
+        <div class="container" style="padding: 15px 0; max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+            <div class="logo">
+                <a th:href="@{/recruiter_home}" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+                    <i class="fa-solid fa-users-viewfinder"></i> Recruitify
+                </a>
+            </div>
+            
+            <nav id="nav">
+                <a th:href="@{/recruiter_home}">Home</a>
+                <a th:href="@{/Recruiter/postRequest}">Post a Job</a>
+                <a th:href="@{/Recruiter/updateProfile}">Update Profile</a>
+                <a href="#footer">Resources</a>
+            </nav>
+
+            <div class="auth-buttons">
+                <a th:href="@{/logout}" title="Logout" class="logout-icon">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </a>
+            </div>
+
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        </div>
+    </header>
+
+    <div class="container" style="flex: 1; display: flex; align-items: center; justify-content: center; margin-top: 140px; margin-bottom: 60px;">
+        <div class="success-card" data-aos="zoom-in">
+            <div class="success-icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h1>Job Posted Successfully!</h1>
+            <p>Your job listing has been created and is now visible to thousands of potential candidates.</p>
+            <div class="actions">
+                <a th:href="@{/recruiter_home}" class="dashboard" style="background: #1f4e79;">Recruiter Dashboard</a>
+                <a th:href="@{/Recruiter/postRequest}" class="post" style="background: #4db678;">Post Another Job</a>
+                <a th:href="@{/recruiter_home}" class="view" style="background: #2ecc71;">View All Listings</a>
+            </div>
+        </div>
+    </div>
 
     <footer class="footer" id="footer" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpNHktz1qPY4eT7OV43_C2VfI1HZCiFmJLVw&s'); background-size: 60%; background-repeat: repeat-x; background-position: bottom; padding: 60px 20px 20px; margin-top: auto;">
         <div class="container" style="display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 1200px; margin: 0 auto; color: #333; text-align: left;">
@@ -253,6 +308,24 @@
             Copyright @ 2026 All Rights Reserved Recruitify.
         </div>
     </footer>
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) {
+                header.classList.add('fixed');
+            } else {
+                header.classList.remove('fixed');
+            }
+        });
+    </script>
 </body>
 
 </html>

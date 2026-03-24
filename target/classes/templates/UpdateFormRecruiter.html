@@ -26,19 +26,27 @@
                 </a>
             </div>
             <nav id="nav">
-                <a th:href="@{/Recruiter/home}">Home</a>
+                <a th:href="@{/recruiter_home}">Home</a>
                 <a th:href="@{/Recruiter/postRequest}">Post a Job</a>
-                <a th:href="@{/Recruiter/allcandidateapply}">Applications</a>
-                <a href="#">Resources</a>
+                <a href="#company-kyc">Upload Company Kyc</a>
+                <a href="#footer">Resources</a>
+
+                 <a th:href="@{/logout}" title="Logout" class="logout-icon">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </a>
             </nav>
-            <div class="auth-buttons">
+            <!-- <div class="auth-buttons">
                 <a th:href="@{/logout}" style="text-decoration: none;">
                     <button class="commonBtn" >
                         <i class="fa-solid fa-right-from-bracket"></i> Logout
                     </button>
                 </a>
-            </div>
+            </div> -->
+
+
+            <!-- <div class="menu-toggle" onclick="toggleMenu()">☰</div> -->
             <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
         </div>
     </header>
 
@@ -142,7 +150,7 @@
         </div>
 
         <!-- KYC SECTION -->
-        <div class="kyc-card" data-aos="fade-right">
+        <div class="kyc-card" data-aos="fade-right" id="company-kyc">
             <h2><i class="fa-solid fa-shield-halved" style="color: var(--primary-color);"></i> Company Verification (KYC)</h2>
             <p style="color: var(--gray-text); margin-bottom: 20px;">Upload your company's registration or tax documents to build trust with candidates.</p>
 

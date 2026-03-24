@@ -24,13 +24,13 @@
             <i class="fa-solid fa-users-viewfinder"></i> Recruitify
         </div>
         <nav class="sidebar-nav">
-            <a href="#stats" class="active"><i class="fa-solid fa-chart-line"></i> <span>Statistics</span></a>
+            <a href="#stats"><i class="fa-solid fa-chart-line"></i> <span>Statistics</span></a>
             <a href="#verify"><i class="fa-solid fa-user-check"></i> <span>Verification</span></a>
             <a href="#candidates"><i class="fa-solid fa-user-graduate"></i> <span>Candidates</span></a>
             <a href="#recruiters"><i class="fa-solid fa-user-tie"></i> <span>Recruiters</span></a>
             <a href="#jobs"><i class="fa-solid fa-briefcase"></i> <span>All Jobs</span></a>
             <a href="#applications"><i class="fa-solid fa-file-invoice"></i> <span>Applications</span></a>
-            <a th:href="@{/candidate_home}"><i class="fa-solid fa-house"></i> <span>Portal Home</span></a>
+            <a th:href="@{/}"><i class="fa-solid fa-house"></i> <span>Portal Home</span></a>
             <a th:href="@{/logout}"><i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span></a>
         </nav>
     </aside>
@@ -284,8 +284,20 @@
             </div>
         </section>
 
-        <footer class="footer-bottom" style="text-align: center; padding: 30px 0; color: var(--gray-text);">
-            <p>© 2026 Admin Dashboard Recruitify. All rights reserved.</p>
+        <footer class="footer-admin">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fa-solid fa-users-viewfinder"></i> Recruitify
+                </div>
+                <div class="footer-links">
+                    <a href="#stats">Dashboard</a>
+                    <a href="#candidates">Candidates</a>
+                    <a href="#recruiters">Recruiters</a>
+                </div>
+                <div class="footer-copy">
+                    <p>© 2026 Admin Dashboard Recruitify. All rights reserved.</p>
+                </div>
+            </div>
         </footer>
     </main>
 
@@ -300,6 +312,40 @@
     
     <!-- Custom JS -->
     <script th:src="@{/js/custom.js}"></script>
+    <script>
+        // Sidebar active link highlighting
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.sidebar-nav a[href^="#"]');
+            const sections = document.querySelectorAll('div[id], section[id]');
+
+            // Update active link on click
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Update active link on scroll (ScrollSpy)
+            window.addEventListener('scroll', () => {
+                let current = "";
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

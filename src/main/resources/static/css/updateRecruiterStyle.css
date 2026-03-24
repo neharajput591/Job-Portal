@@ -130,6 +130,21 @@ nav a:hover {
     color: var(--primary-color);
 }
 
+.logout-icon {
+    color: white;
+    font-size: 20px;
+    transition: 0.3s;
+    text-decoration: none;
+    /* gap: 20px; */
+    margin-left: 15rem;
+    margin-right: 3px;
+}
+
+.logout-icon:hover {
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
 .auth-buttons {
     display: flex;
     align-items: center;
@@ -137,7 +152,7 @@ nav a:hover {
     /* margin-left: 100px; */
 }
 
-.logout-icon {
+/* .logout-icon {
     color: var(--white);
     font-size: 20px;
     transition: 0.3s;
@@ -147,7 +162,7 @@ nav a:hover {
 .logout-icon:hover {
     color: var(--primary-color);
     transform: scale(1.1);
-}
+} */
 
 /* Auth Buttons & commonBtn - Matching landing page */
 .commonBtn {

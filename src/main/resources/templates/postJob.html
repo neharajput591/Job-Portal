@@ -25,17 +25,20 @@
                     <i class="fa-solid fa-users-viewfinder"></i> Recruitify
                 </a>
             </div>
+            
             <nav id="nav">
-                <a th:href="@{/Recruiter/home}">Home</a>
+                <a th:href="@{/recruiter_home}">Home</a>
                 <a th:href="@{/Recruiter/postRequest}">Post a Job</a>
-                <a th:href="@{/Recruiter/allcandidateapply}">Applications</a>
-                <a href="#">Resources</a>
+                <a th:href="@{/Recruiter/updateProfile}">Update Profile</a>
+                <a href="#footer">Resources</a>
             </nav>
+
             <div class="auth-buttons">
                 <a th:href="@{/logout}" title="Logout" class="logout-icon">
                     <i class="fa-solid fa-right-from-bracket"></i>
                 </a>
             </div>
+
             <div class="menu-toggle" onclick="toggleMenu()">☰</div>
         </div>
     </header>
